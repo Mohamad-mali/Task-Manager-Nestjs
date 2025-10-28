@@ -1,0 +1,35 @@
+2025-10-27 11:56:16 [info] Starting Nest application...
+2025-10-27 11:56:16 [info] TypeOrmModule dependencies initialized
+2025-10-27 11:56:16 [info] ConfigHostModule dependencies initialized
+2025-10-27 11:56:16 [info] WinstonModule dependencies initialized
+2025-10-27 11:56:16 [info] JwtModule dependencies initialized
+2025-10-27 11:56:16 [info] DiscoveryModule dependencies initialized
+2025-10-27 11:56:16 [info] AppModule dependencies initialized
+2025-10-27 11:56:16 [info] ConfigModule dependencies initialized
+2025-10-27 11:56:16 [info] ScheduleModule dependencies initialized
+2025-10-27 11:56:16 [info] AuthModule dependencies initialized
+2025-10-27 11:56:16 [info] CacheModule dependencies initialized
+2025-10-27 11:56:16 [info] TypeOrmCoreModule dependencies initialized
+2025-10-27 11:56:16 [info] TypeOrmModule dependencies initialized
+2025-10-27 11:56:16 [info] TypeOrmModule dependencies initialized
+2025-10-27 11:56:16 [info] UserModule dependencies initialized
+2025-10-27 11:56:16 [info] TaskModule dependencies initialized
+2025-10-27 11:56:16 [info] AppController {/}:
+2025-10-27 11:56:16 [info] Mapped {/, GET} route
+2025-10-27 11:56:16 [info] UserController {/user}:
+2025-10-27 11:56:16 [info] Mapped {/user, GET} route
+2025-10-27 11:56:16 [info] Mapped {/user/signup, POST} route
+2025-10-27 11:56:16 [info] Mapped {/user/signin, POST} route
+2025-10-27 11:56:16 [info] Mapped {/user/:id, DELETE} route
+2025-10-27 11:56:16 [info] Mapped {/user/:id, PATCH} route
+2025-10-27 11:56:16 [info] TaskController {/task}:
+2025-10-27 11:56:16 [info] Mapped {/task/:id, GET} route
+2025-10-27 11:56:16 [info] Mapped {/task, GET} route
+2025-10-27 11:56:16 [info] Mapped {/task/createTask, POST} route
+2025-10-27 11:56:16 [info] Mapped {/task/:id, DELETE} route
+2025-10-27 11:56:16 [info] Mapped {/task/:id, PATCH} route
+2025-10-27 11:56:16 [info] AuthController {/auth}:
+2025-10-27 11:56:16 [info] Nest application successfully started
+2025-10-27 11:58:36 [error] the was no user found or the id was wrong(task creation faild)
+2025-10-27 11:58:48 [error] the was no user found or the id was wrong(task creation faild)
+2025-10-27 11:59:58 [warn] task was updated!!! the data is ereasable

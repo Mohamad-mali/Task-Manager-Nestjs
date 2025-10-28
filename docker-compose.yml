@@ -1,0 +1,29 @@
+services:
+  redis:
+    image: 'redis:7-alpine'
+    container_name: taskManager_redis
+  postgres:
+    image: 'postgres'
+    container_name: taskManager_postgres
+    # environment:
+    #   POSTGRES_DB: taskmanagernest
+    #   POSTGRES_USER: root
+    #   POSTGRES_PASSWORD: 123456789
+    # volumes:
+    #   - pgdata:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: TaskManager
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/taskManagerNest
+      - /taskManagerNest/node_modules
+    depends_on:
+      - redis
+      - postgres
+    env_file:
+      - .env
