@@ -1,5 +1,7 @@
 import { IsOptional, Length, Max, Min } from 'class-validator';
 
+import { Status } from './TaskStatus';
+
 export class updateTaskDto {
   @IsOptional()
   title: string;
@@ -10,5 +12,5 @@ export class updateTaskDto {
   @IsOptional()
   @Min(1)
   @Max(3)
-  status: number;
+  status: Status;
 }

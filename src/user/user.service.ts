@@ -56,7 +56,8 @@ export class UserService {
     if (!user) {
       throw new NotFoundException();
     }
-    const isPass = brypt.compare(password, user.password);
+    const isPass = await brypt.compare(password, user.password);
+    console.log(isPass);
 
     if (!isPass) {
       throw new BadRequestException();
@@ -72,12 +73,6 @@ export class UserService {
 
     if (!user) {
       throw new NotFoundException();
-    }
-
-    const tasks = await this.taskRepo.find({ where: { userId: user.id } });
-
-    if (tasks) {
-      this.taskRepo.remove(tasks);
     }
 
     return await this.repo.remove(user);

@@ -6,6 +6,7 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 //internal Imports
 import { winstonLogger } from '../logger';
 import { AppModule } from './app.module';
+import { AllExceptionsFilter } from './interceptors/exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -15,7 +16,7 @@ async function bootstrap() {
   // app.connectMicroservice<MicroserviceOptions>({
   //   transport: Transport.RMQ,
   //   options: {
-  //     urls: ['amqp://localhost:5672'],
+  //     urls: ['amqp://rabbit:5672'],
   //     queue: 'taskQueue',
   //     queueOptions: {
   //       durable: true,
@@ -33,6 +34,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, documentFactory);
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  app.useGlobalFilters(new AllExceptionsFilter());
 
   await app.startAllMicroservices();
   await app.listen(3000);

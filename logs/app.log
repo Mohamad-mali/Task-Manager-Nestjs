@@ -33,3 +33,776 @@
 2025-10-27 11:58:36 [error] the was no user found or the id was wrong(task creation faild)
 2025-10-27 11:58:48 [error] the was no user found or the id was wrong(task creation faild)
 2025-10-27 11:59:58 [warn] task was updated!!! the data is ereasable
+2025-10-28 12:57:20 [info] Starting Nest application...
+2025-10-28 12:57:20 [info] TypeOrmModule dependencies initialized
+2025-10-28 12:57:20 [info] ConfigHostModule dependencies initialized
+2025-10-28 12:57:20 [info] WinstonModule dependencies initialized
+2025-10-28 12:57:20 [info] JwtModule dependencies initialized
+2025-10-28 12:57:20 [info] DiscoveryModule dependencies initialized
+2025-10-28 12:57:20 [info] AppModule dependencies initialized
+2025-10-28 12:57:20 [info] ConfigModule dependencies initialized
+2025-10-28 12:57:20 [info] ScheduleModule dependencies initialized
+2025-10-28 12:57:20 [info] AuthModule dependencies initialized
+2025-10-28 12:57:20 [info] CacheModule dependencies initialized
+2025-10-28 12:57:20 [info] TypeOrmCoreModule dependencies initialized
+2025-10-28 12:57:20 [info] TypeOrmModule dependencies initialized
+2025-10-28 12:57:20 [info] TypeOrmModule dependencies initialized
+2025-10-28 12:57:20 [info] UserModule dependencies initialized
+2025-10-28 12:57:20 [info] TaskModule dependencies initialized
+2025-10-28 12:57:20 [info] AppController {/}:
+2025-10-28 12:57:20 [info] Mapped {/, GET} route
+2025-10-28 12:57:20 [info] UserController {/user}:
+2025-10-28 12:57:20 [info] Mapped {/user, GET} route
+2025-10-28 12:57:20 [info] Mapped {/user/signup, POST} route
+2025-10-28 12:57:20 [info] Mapped {/user/signin, POST} route
+2025-10-28 12:57:20 [info] Mapped {/user/:id, DELETE} route
+2025-10-28 12:57:20 [info] Mapped {/user/:id, PATCH} route
+2025-10-28 12:57:20 [info] TaskController {/task}:
+2025-10-28 12:57:20 [info] Mapped {/task/:id, GET} route
+2025-10-28 12:57:20 [info] Mapped {/task, GET} route
+2025-10-28 12:57:20 [info] Mapped {/task/createTask, POST} route
+2025-10-28 12:57:20 [info] Mapped {/task/:id, DELETE} route
+2025-10-28 12:57:20 [info] Mapped {/task/:id, PATCH} route
+2025-10-28 12:57:20 [info] AuthController {/auth}:
+2025-10-28 12:57:20 [info] Nest application successfully started
+2025-10-28 12:58:48 [error] the was no user found or the id was wrong(task creation faild)
+2025-10-28 12:59:03 [error] the was no user found or the id was wrong(task creation faild)
+2025-10-28 13:00:14 [error] the task was not found, or the task id was wrong (taask deletion faild)
+2025-10-28 13:00:50 [error] the task was not found, or the task id was wrong (taask deletion faild)
+2025-10-28 13:01:14 [error] the task was not found, or the task id was wrong (taask deletion faild)
+2025-10-28 13:09:35 [info] Starting Nest application...
+2025-10-28 13:09:35 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:09:35 [info] ConfigHostModule dependencies initialized
+2025-10-28 13:09:35 [info] WinstonModule dependencies initialized
+2025-10-28 13:09:35 [info] JwtModule dependencies initialized
+2025-10-28 13:09:35 [info] DiscoveryModule dependencies initialized
+2025-10-28 13:09:35 [info] AppModule dependencies initialized
+2025-10-28 13:09:35 [info] ConfigModule dependencies initialized
+2025-10-28 13:09:35 [info] ScheduleModule dependencies initialized
+2025-10-28 13:09:35 [info] AuthModule dependencies initialized
+2025-10-28 13:09:35 [info] CacheModule dependencies initialized
+2025-10-28 13:09:35 [info] TypeOrmCoreModule dependencies initialized
+2025-10-28 13:09:35 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:09:35 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:09:35 [info] UserModule dependencies initialized
+2025-10-28 13:09:35 [info] TaskModule dependencies initialized
+2025-10-28 13:09:35 [info] AppController {/}:
+2025-10-28 13:09:35 [info] Mapped {/, GET} route
+2025-10-28 13:09:35 [info] UserController {/user}:
+2025-10-28 13:09:35 [info] Mapped {/user, GET} route
+2025-10-28 13:09:35 [info] Mapped {/user/signup, POST} route
+2025-10-28 13:09:35 [info] Mapped {/user/signin, POST} route
+2025-10-28 13:09:35 [info] Mapped {/user/:id, DELETE} route
+2025-10-28 13:09:35 [info] Mapped {/user/:id, PATCH} route
+2025-10-28 13:09:35 [info] TaskController {/task}:
+2025-10-28 13:09:35 [info] Mapped {/task/:id, GET} route
+2025-10-28 13:09:35 [info] Mapped {/task, GET} route
+2025-10-28 13:09:35 [info] Mapped {/task/createTask, POST} route
+2025-10-28 13:09:35 [info] Mapped {/task/:id, DELETE} route
+2025-10-28 13:09:35 [info] Mapped {/task/:id, PATCH} route
+2025-10-28 13:09:35 [info] AuthController {/auth}:
+2025-10-28 13:09:35 [info] Nest application successfully started
+2025-10-28 13:14:38 [info] Starting Nest application...
+2025-10-28 13:14:38 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:14:38 [info] ConfigHostModule dependencies initialized
+2025-10-28 13:14:38 [info] WinstonModule dependencies initialized
+2025-10-28 13:14:38 [info] JwtModule dependencies initialized
+2025-10-28 13:14:38 [info] DiscoveryModule dependencies initialized
+2025-10-28 13:14:38 [info] AppModule dependencies initialized
+2025-10-28 13:14:38 [info] ConfigModule dependencies initialized
+2025-10-28 13:14:38 [info] ScheduleModule dependencies initialized
+2025-10-28 13:14:38 [info] AuthModule dependencies initialized
+2025-10-28 13:14:38 [info] CacheModule dependencies initialized
+2025-10-28 13:14:38 [info] TypeOrmCoreModule dependencies initialized
+2025-10-28 13:14:38 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:14:38 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:14:38 [info] UserModule dependencies initialized
+2025-10-28 13:14:38 [info] TaskModule dependencies initialized
+2025-10-28 13:14:38 [info] AppController {/}:
+2025-10-28 13:14:38 [info] Mapped {/, GET} route
+2025-10-28 13:14:38 [info] UserController {/user}:
+2025-10-28 13:14:38 [info] Mapped {/user, GET} route
+2025-10-28 13:14:38 [info] Mapped {/user/signup, POST} route
+2025-10-28 13:14:38 [info] Mapped {/user/signin, POST} route
+2025-10-28 13:14:38 [info] Mapped {/user/:id, DELETE} route
+2025-10-28 13:14:38 [info] Mapped {/user/:id, PATCH} route
+2025-10-28 13:14:38 [info] TaskController {/task}:
+2025-10-28 13:14:38 [info] Mapped {/task/:id, GET} route
+2025-10-28 13:14:38 [info] Mapped {/task, GET} route
+2025-10-28 13:14:38 [info] Mapped {/task/createTask, POST} route
+2025-10-28 13:14:38 [info] Mapped {/task/:id, DELETE} route
+2025-10-28 13:14:38 [info] Mapped {/task/:id, PATCH} route
+2025-10-28 13:14:38 [info] AuthController {/auth}:
+2025-10-28 13:14:38 [info] Nest application successfully started
+2025-10-28 13:15:07 [info] Starting Nest application...
+2025-10-28 13:15:07 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:15:07 [info] ConfigHostModule dependencies initialized
+2025-10-28 13:15:07 [info] WinstonModule dependencies initialized
+2025-10-28 13:15:07 [info] JwtModule dependencies initialized
+2025-10-28 13:15:07 [info] DiscoveryModule dependencies initialized
+2025-10-28 13:15:07 [info] AppModule dependencies initialized
+2025-10-28 13:15:07 [info] ConfigModule dependencies initialized
+2025-10-28 13:15:07 [info] ScheduleModule dependencies initialized
+2025-10-28 13:15:07 [info] AuthModule dependencies initialized
+2025-10-28 13:15:07 [info] CacheModule dependencies initialized
+2025-10-28 13:15:07 [info] TypeOrmCoreModule dependencies initialized
+2025-10-28 13:15:07 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:15:07 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:15:07 [info] UserModule dependencies initialized
+2025-10-28 13:15:07 [info] TaskModule dependencies initialized
+2025-10-28 13:15:07 [info] AppController {/}:
+2025-10-28 13:15:07 [info] Mapped {/, GET} route
+2025-10-28 13:15:07 [info] UserController {/user}:
+2025-10-28 13:15:07 [info] Mapped {/user, GET} route
+2025-10-28 13:15:07 [info] Mapped {/user/signup, POST} route
+2025-10-28 13:15:07 [info] Mapped {/user/signin, POST} route
+2025-10-28 13:15:07 [info] Mapped {/user/:id, DELETE} route
+2025-10-28 13:15:07 [info] Mapped {/user/:id, PATCH} route
+2025-10-28 13:15:07 [info] TaskController {/task}:
+2025-10-28 13:15:07 [info] Mapped {/task/:id, GET} route
+2025-10-28 13:15:07 [info] Mapped {/task, GET} route
+2025-10-28 13:15:07 [info] Mapped {/task/createTask, POST} route
+2025-10-28 13:15:07 [info] Mapped {/task/:id, DELETE} route
+2025-10-28 13:15:07 [info] Mapped {/task/:id, PATCH} route
+2025-10-28 13:15:07 [info] AuthController {/auth}:
+2025-10-28 13:15:07 [info] Nest application successfully started
+2025-10-28 13:18:37 [info] Starting Nest application...
+2025-10-28 13:18:37 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:18:37 [info] ConfigHostModule dependencies initialized
+2025-10-28 13:18:37 [info] WinstonModule dependencies initialized
+2025-10-28 13:18:37 [info] JwtModule dependencies initialized
+2025-10-28 13:18:37 [info] DiscoveryModule dependencies initialized
+2025-10-28 13:18:37 [info] AppModule dependencies initialized
+2025-10-28 13:18:37 [info] ConfigModule dependencies initialized
+2025-10-28 13:18:37 [info] ScheduleModule dependencies initialized
+2025-10-28 13:18:37 [info] AuthModule dependencies initialized
+2025-10-28 13:18:37 [info] CacheModule dependencies initialized
+2025-10-28 13:18:37 [info] TypeOrmCoreModule dependencies initialized
+2025-10-28 13:18:37 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:18:37 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:18:37 [info] UserModule dependencies initialized
+2025-10-28 13:18:37 [info] TaskModule dependencies initialized
+2025-10-28 13:18:37 [info] AppController {/}:
+2025-10-28 13:18:37 [info] Mapped {/, GET} route
+2025-10-28 13:18:37 [info] UserController {/user}:
+2025-10-28 13:18:37 [info] Mapped {/user, GET} route
+2025-10-28 13:18:37 [info] Mapped {/user/signup, POST} route
+2025-10-28 13:18:37 [info] Mapped {/user/signin, POST} route
+2025-10-28 13:18:37 [info] Mapped {/user/:id, DELETE} route
+2025-10-28 13:18:37 [info] Mapped {/user/:id, PATCH} route
+2025-10-28 13:18:37 [info] TaskController {/task}:
+2025-10-28 13:18:37 [info] Mapped {/task/:id, GET} route
+2025-10-28 13:18:37 [info] Mapped {/task, GET} route
+2025-10-28 13:18:37 [info] Mapped {/task/createTask, POST} route
+2025-10-28 13:18:37 [info] Mapped {/task/:id, DELETE} route
+2025-10-28 13:18:37 [info] Mapped {/task/:id, PATCH} route
+2025-10-28 13:18:37 [info] AuthController {/auth}:
+2025-10-28 13:18:37 [info] Nest application successfully started
+2025-10-28 13:19:11 [info] Starting Nest application...
+2025-10-28 13:19:11 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:19:11 [info] ConfigHostModule dependencies initialized
+2025-10-28 13:19:11 [info] WinstonModule dependencies initialized
+2025-10-28 13:19:11 [info] JwtModule dependencies initialized
+2025-10-28 13:19:11 [info] DiscoveryModule dependencies initialized
+2025-10-28 13:19:11 [info] AppModule dependencies initialized
+2025-10-28 13:19:11 [info] ConfigModule dependencies initialized
+2025-10-28 13:19:11 [info] ScheduleModule dependencies initialized
+2025-10-28 13:19:11 [info] AuthModule dependencies initialized
+2025-10-28 13:19:11 [info] CacheModule dependencies initialized
+2025-10-28 13:19:11 [info] TypeOrmCoreModule dependencies initialized
+2025-10-28 13:19:11 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:19:11 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:19:11 [info] UserModule dependencies initialized
+2025-10-28 13:19:11 [info] TaskModule dependencies initialized
+2025-10-28 13:19:11 [info] AppController {/}:
+2025-10-28 13:19:11 [info] Mapped {/, GET} route
+2025-10-28 13:19:11 [info] UserController {/user}:
+2025-10-28 13:19:11 [info] Mapped {/user, GET} route
+2025-10-28 13:19:11 [info] Mapped {/user/signup, POST} route
+2025-10-28 13:19:11 [info] Mapped {/user/signin, POST} route
+2025-10-28 13:19:11 [info] Mapped {/user/:id, DELETE} route
+2025-10-28 13:19:11 [info] Mapped {/user/:id, PATCH} route
+2025-10-28 13:19:11 [info] TaskController {/task}:
+2025-10-28 13:19:11 [info] Mapped {/task/:id, GET} route
+2025-10-28 13:19:11 [info] Mapped {/task, GET} route
+2025-10-28 13:19:11 [info] Mapped {/task/createTask, POST} route
+2025-10-28 13:19:11 [info] Mapped {/task/:id, DELETE} route
+2025-10-28 13:19:11 [info] Mapped {/task/:id, PATCH} route
+2025-10-28 13:19:11 [info] AuthController {/auth}:
+2025-10-28 13:19:11 [info] Nest application successfully started
+2025-10-28 13:20:51 [info] Starting Nest application...
+2025-10-28 13:20:51 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:20:51 [info] ConfigHostModule dependencies initialized
+2025-10-28 13:20:51 [info] WinstonModule dependencies initialized
+2025-10-28 13:20:51 [info] JwtModule dependencies initialized
+2025-10-28 13:20:51 [info] DiscoveryModule dependencies initialized
+2025-10-28 13:20:51 [info] AppModule dependencies initialized
+2025-10-28 13:20:51 [info] ConfigModule dependencies initialized
+2025-10-28 13:20:51 [info] ScheduleModule dependencies initialized
+2025-10-28 13:20:51 [info] AuthModule dependencies initialized
+2025-10-28 13:20:51 [info] CacheModule dependencies initialized
+2025-10-28 13:20:51 [info] TypeOrmCoreModule dependencies initialized
+2025-10-28 13:20:51 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:20:51 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:20:51 [info] UserModule dependencies initialized
+2025-10-28 13:20:51 [info] TaskModule dependencies initialized
+2025-10-28 13:20:51 [info] AppController {/}:
+2025-10-28 13:20:51 [info] Mapped {/, GET} route
+2025-10-28 13:20:51 [info] UserController {/user}:
+2025-10-28 13:20:51 [info] Mapped {/user, GET} route
+2025-10-28 13:20:51 [info] Mapped {/user/signup, POST} route
+2025-10-28 13:20:51 [info] Mapped {/user/signin, POST} route
+2025-10-28 13:20:51 [info] Mapped {/user/:id, DELETE} route
+2025-10-28 13:20:51 [info] Mapped {/user/:id, PATCH} route
+2025-10-28 13:20:51 [info] TaskController {/task}:
+2025-10-28 13:20:51 [info] Mapped {/task/:id, GET} route
+2025-10-28 13:20:51 [info] Mapped {/task, GET} route
+2025-10-28 13:20:51 [info] Mapped {/task/createTask, POST} route
+2025-10-28 13:20:51 [info] Mapped {/task/:id, DELETE} route
+2025-10-28 13:20:51 [info] Mapped {/task/:id, PATCH} route
+2025-10-28 13:20:51 [info] AuthController {/auth}:
+2025-10-28 13:20:51 [info] Nest application successfully started
+2025-10-28 13:24:31 [info] Starting Nest application...
+2025-10-28 13:24:31 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:24:31 [info] ConfigHostModule dependencies initialized
+2025-10-28 13:24:31 [info] WinstonModule dependencies initialized
+2025-10-28 13:24:31 [info] JwtModule dependencies initialized
+2025-10-28 13:24:31 [info] DiscoveryModule dependencies initialized
+2025-10-28 13:24:31 [info] AppModule dependencies initialized
+2025-10-28 13:24:31 [info] ConfigModule dependencies initialized
+2025-10-28 13:24:31 [info] ScheduleModule dependencies initialized
+2025-10-28 13:24:31 [info] AuthModule dependencies initialized
+2025-10-28 13:24:31 [info] CacheModule dependencies initialized
+2025-10-28 13:24:31 [info] TypeOrmCoreModule dependencies initialized
+2025-10-28 13:24:31 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:24:31 [info] TypeOrmModule dependencies initialized
+2025-10-28 13:24:31 [info] UserModule dependencies initialized
+2025-10-28 13:24:31 [info] TaskModule dependencies initialized
+2025-10-28 13:24:31 [info] AppController {/}:
+2025-10-28 13:24:31 [info] Mapped {/, GET} route
+2025-10-28 13:24:31 [info] UserController {/user}:
+2025-10-28 13:24:31 [info] Mapped {/user, GET} route
+2025-10-28 13:24:31 [info] Mapped {/user/signup, POST} route
+2025-10-28 13:24:31 [info] Mapped {/user/signin, POST} route
+2025-10-28 13:24:31 [info] Mapped {/user/:id, DELETE} route
+2025-10-28 13:24:31 [info] Mapped {/user/:id, PATCH} route
+2025-10-28 13:24:31 [info] TaskController {/task}:
+2025-10-28 13:24:31 [info] Mapped {/task/:id, GET} route
+2025-10-28 13:24:31 [info] Mapped {/task, GET} route
+2025-10-28 13:24:31 [info] Mapped {/task/createTask, POST} route
+2025-10-28 13:24:31 [info] Mapped {/task/:id, DELETE} route
+2025-10-28 13:24:31 [info] Mapped {/task/:id, PATCH} route
+2025-10-28 13:24:31 [info] AuthController {/auth}:
+2025-10-28 13:24:31 [info] Nest application successfully started
+2025-10-29 18:21:17 [info] Starting Nest application...
+2025-10-29 18:21:17 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:21:17 [info] ConfigHostModule dependencies initialized
+2025-10-29 18:21:17 [info] WinstonModule dependencies initialized
+2025-10-29 18:21:17 [info] JwtModule dependencies initialized
+2025-10-29 18:21:17 [info] DiscoveryModule dependencies initialized
+2025-10-29 18:21:17 [info] AppModule dependencies initialized
+2025-10-29 18:21:17 [info] ConfigModule dependencies initialized
+2025-10-29 18:21:17 [info] ScheduleModule dependencies initialized
+2025-10-29 18:21:17 [info] AuthModule dependencies initialized
+2025-10-29 18:21:17 [info] CacheModule dependencies initialized
+2025-10-29 18:21:18 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 18:21:18 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:21:18 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:21:18 [info] UserModule dependencies initialized
+2025-10-29 18:21:18 [info] TaskModule dependencies initialized
+2025-10-29 18:21:18 [info] AppController {/}:
+2025-10-29 18:21:18 [info] Mapped {/, GET} route
+2025-10-29 18:21:18 [info] UserController {/user}:
+2025-10-29 18:21:18 [info] Mapped {/user, GET} route
+2025-10-29 18:21:18 [info] Mapped {/user/signup, POST} route
+2025-10-29 18:21:18 [info] Mapped {/user/signin, POST} route
+2025-10-29 18:21:18 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 18:21:18 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 18:21:18 [info] TaskController {/task}:
+2025-10-29 18:21:18 [info] Mapped {/task/:id, GET} route
+2025-10-29 18:21:18 [info] Mapped {/task, GET} route
+2025-10-29 18:21:18 [info] Mapped {/task/createTask, POST} route
+2025-10-29 18:21:18 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 18:21:18 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 18:21:18 [info] AuthController {/auth}:
+2025-10-29 18:21:18 [info] Nest application successfully started
+2025-10-29 18:25:10 [info] Starting Nest application...
+2025-10-29 18:25:10 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:25:10 [info] ConfigHostModule dependencies initialized
+2025-10-29 18:25:10 [info] WinstonModule dependencies initialized
+2025-10-29 18:25:10 [info] JwtModule dependencies initialized
+2025-10-29 18:25:10 [info] DiscoveryModule dependencies initialized
+2025-10-29 18:25:10 [info] AppModule dependencies initialized
+2025-10-29 18:25:10 [info] ConfigModule dependencies initialized
+2025-10-29 18:25:10 [info] ScheduleModule dependencies initialized
+2025-10-29 18:25:10 [info] AuthModule dependencies initialized
+2025-10-29 18:25:10 [info] CacheModule dependencies initialized
+2025-10-29 18:25:10 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 18:25:10 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:25:10 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:25:10 [info] UserModule dependencies initialized
+2025-10-29 18:25:10 [info] TaskModule dependencies initialized
+2025-10-29 18:25:10 [info] AppController {/}:
+2025-10-29 18:25:10 [info] Mapped {/, GET} route
+2025-10-29 18:25:10 [info] UserController {/user}:
+2025-10-29 18:25:10 [info] Mapped {/user, GET} route
+2025-10-29 18:25:10 [info] Mapped {/user/signup, POST} route
+2025-10-29 18:25:10 [info] Mapped {/user/signin, POST} route
+2025-10-29 18:25:10 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 18:25:10 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 18:25:10 [info] TaskController {/task}:
+2025-10-29 18:25:10 [info] Mapped {/task/:id, GET} route
+2025-10-29 18:25:10 [info] Mapped {/task, GET} route
+2025-10-29 18:25:10 [info] Mapped {/task/createTask, POST} route
+2025-10-29 18:25:10 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 18:25:10 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 18:25:10 [info] AuthController {/auth}:
+2025-10-29 18:25:10 [info] Nest application successfully started
+2025-10-29 18:26:27 [info] Starting Nest application...
+2025-10-29 18:26:27 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:26:27 [info] ConfigHostModule dependencies initialized
+2025-10-29 18:26:27 [info] WinstonModule dependencies initialized
+2025-10-29 18:26:27 [info] JwtModule dependencies initialized
+2025-10-29 18:26:27 [info] DiscoveryModule dependencies initialized
+2025-10-29 18:26:27 [info] AppModule dependencies initialized
+2025-10-29 18:26:27 [info] ConfigModule dependencies initialized
+2025-10-29 18:26:27 [info] ScheduleModule dependencies initialized
+2025-10-29 18:26:27 [info] AuthModule dependencies initialized
+2025-10-29 18:26:27 [info] CacheModule dependencies initialized
+2025-10-29 18:26:27 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 18:26:27 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:26:27 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:26:27 [info] UserModule dependencies initialized
+2025-10-29 18:26:27 [info] TaskModule dependencies initialized
+2025-10-29 18:26:27 [info] AppController {/}:
+2025-10-29 18:26:27 [info] Mapped {/, GET} route
+2025-10-29 18:26:27 [info] UserController {/user}:
+2025-10-29 18:26:27 [info] Mapped {/user, GET} route
+2025-10-29 18:26:27 [info] Mapped {/user/signup, POST} route
+2025-10-29 18:26:27 [info] Mapped {/user/signin, POST} route
+2025-10-29 18:26:28 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 18:26:28 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 18:26:28 [info] TaskController {/task}:
+2025-10-29 18:26:28 [info] Mapped {/task/:id, GET} route
+2025-10-29 18:26:28 [info] Mapped {/task, GET} route
+2025-10-29 18:26:28 [info] Mapped {/task/createTask, POST} route
+2025-10-29 18:26:28 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 18:26:28 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 18:26:28 [info] AuthController {/auth}:
+2025-10-29 18:26:28 [info] Nest application successfully started
+2025-10-29 18:26:51 [info] Starting Nest application...
+2025-10-29 18:26:51 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:26:51 [info] ConfigHostModule dependencies initialized
+2025-10-29 18:26:51 [info] WinstonModule dependencies initialized
+2025-10-29 18:26:51 [info] JwtModule dependencies initialized
+2025-10-29 18:26:51 [info] DiscoveryModule dependencies initialized
+2025-10-29 18:26:51 [info] AppModule dependencies initialized
+2025-10-29 18:26:51 [info] ConfigModule dependencies initialized
+2025-10-29 18:26:51 [info] ScheduleModule dependencies initialized
+2025-10-29 18:26:51 [info] AuthModule dependencies initialized
+2025-10-29 18:26:51 [info] CacheModule dependencies initialized
+2025-10-29 18:26:51 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 18:26:51 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:26:51 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:26:51 [info] UserModule dependencies initialized
+2025-10-29 18:26:51 [info] TaskModule dependencies initialized
+2025-10-29 18:26:51 [info] AppController {/}:
+2025-10-29 18:26:51 [info] Mapped {/, GET} route
+2025-10-29 18:26:51 [info] UserController {/user}:
+2025-10-29 18:26:51 [info] Mapped {/user, GET} route
+2025-10-29 18:26:51 [info] Mapped {/user/signup, POST} route
+2025-10-29 18:26:51 [info] Mapped {/user/signin, POST} route
+2025-10-29 18:26:51 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 18:26:51 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 18:26:51 [info] TaskController {/task}:
+2025-10-29 18:26:51 [info] Mapped {/task/:id, GET} route
+2025-10-29 18:26:51 [info] Mapped {/task, GET} route
+2025-10-29 18:26:51 [info] Mapped {/task/createTask, POST} route
+2025-10-29 18:26:51 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 18:26:51 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 18:26:51 [info] AuthController {/auth}:
+2025-10-29 18:26:51 [info] Nest application successfully started
+2025-10-29 18:27:03 [info] Starting Nest application...
+2025-10-29 18:27:03 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:27:03 [info] ConfigHostModule dependencies initialized
+2025-10-29 18:27:03 [info] WinstonModule dependencies initialized
+2025-10-29 18:27:03 [info] JwtModule dependencies initialized
+2025-10-29 18:27:03 [info] DiscoveryModule dependencies initialized
+2025-10-29 18:27:03 [info] AppModule dependencies initialized
+2025-10-29 18:27:03 [info] ConfigModule dependencies initialized
+2025-10-29 18:27:03 [info] ScheduleModule dependencies initialized
+2025-10-29 18:27:03 [info] AuthModule dependencies initialized
+2025-10-29 18:27:03 [info] CacheModule dependencies initialized
+2025-10-29 18:27:03 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 18:27:03 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:27:03 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:27:03 [info] UserModule dependencies initialized
+2025-10-29 18:27:03 [info] TaskModule dependencies initialized
+2025-10-29 18:27:03 [info] AppController {/}:
+2025-10-29 18:27:03 [info] Mapped {/, GET} route
+2025-10-29 18:27:03 [info] UserController {/user}:
+2025-10-29 18:27:03 [info] Mapped {/user, GET} route
+2025-10-29 18:27:03 [info] Mapped {/user/signup, POST} route
+2025-10-29 18:27:03 [info] Mapped {/user/signin, POST} route
+2025-10-29 18:27:03 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 18:27:03 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 18:27:03 [info] TaskController {/task}:
+2025-10-29 18:27:03 [info] Mapped {/task/:id, GET} route
+2025-10-29 18:27:03 [info] Mapped {/task, GET} route
+2025-10-29 18:27:03 [info] Mapped {/task/createTask, POST} route
+2025-10-29 18:27:03 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 18:27:03 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 18:27:03 [info] AuthController {/auth}:
+2025-10-29 18:27:03 [info] Nest application successfully started
+2025-10-29 18:27:35 [info] Starting Nest application...
+2025-10-29 18:27:35 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:27:35 [info] ConfigHostModule dependencies initialized
+2025-10-29 18:27:35 [info] WinstonModule dependencies initialized
+2025-10-29 18:27:35 [info] JwtModule dependencies initialized
+2025-10-29 18:27:35 [info] DiscoveryModule dependencies initialized
+2025-10-29 18:27:35 [info] AppModule dependencies initialized
+2025-10-29 18:27:35 [info] ConfigModule dependencies initialized
+2025-10-29 18:27:35 [info] ScheduleModule dependencies initialized
+2025-10-29 18:27:35 [info] AuthModule dependencies initialized
+2025-10-29 18:27:35 [info] CacheModule dependencies initialized
+2025-10-29 18:27:35 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 18:27:35 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:27:35 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:27:35 [info] UserModule dependencies initialized
+2025-10-29 18:27:35 [info] TaskModule dependencies initialized
+2025-10-29 18:27:35 [info] AppController {/}:
+2025-10-29 18:27:35 [info] Mapped {/, GET} route
+2025-10-29 18:27:35 [info] UserController {/user}:
+2025-10-29 18:27:35 [info] Mapped {/user, GET} route
+2025-10-29 18:27:35 [info] Mapped {/user/signup, POST} route
+2025-10-29 18:27:35 [info] Mapped {/user/signin, POST} route
+2025-10-29 18:27:35 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 18:27:35 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 18:27:35 [info] TaskController {/task}:
+2025-10-29 18:27:35 [info] Mapped {/task/:id, GET} route
+2025-10-29 18:27:35 [info] Mapped {/task, GET} route
+2025-10-29 18:27:35 [info] Mapped {/task/createTask, POST} route
+2025-10-29 18:27:35 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 18:27:35 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 18:27:35 [info] AuthController {/auth}:
+2025-10-29 18:27:35 [info] Nest application successfully started
+2025-10-29 18:31:35 [info] Starting Nest application...
+2025-10-29 18:31:35 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:31:35 [info] ConfigHostModule dependencies initialized
+2025-10-29 18:31:35 [info] WinstonModule dependencies initialized
+2025-10-29 18:31:35 [info] JwtModule dependencies initialized
+2025-10-29 18:31:35 [info] DiscoveryModule dependencies initialized
+2025-10-29 18:31:35 [info] AppModule dependencies initialized
+2025-10-29 18:31:35 [info] ConfigModule dependencies initialized
+2025-10-29 18:31:35 [info] ScheduleModule dependencies initialized
+2025-10-29 18:31:35 [info] AuthModule dependencies initialized
+2025-10-29 18:31:35 [info] CacheModule dependencies initialized
+2025-10-29 18:31:35 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 18:31:35 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:31:35 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:31:35 [info] UserModule dependencies initialized
+2025-10-29 18:31:35 [info] TaskModule dependencies initialized
+2025-10-29 18:31:35 [info] AppController {/}:
+2025-10-29 18:31:35 [info] Mapped {/, GET} route
+2025-10-29 18:31:35 [info] UserController {/user}:
+2025-10-29 18:31:35 [info] Mapped {/user, GET} route
+2025-10-29 18:31:35 [info] Mapped {/user/signup, POST} route
+2025-10-29 18:31:35 [info] Mapped {/user/signin, POST} route
+2025-10-29 18:31:35 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 18:31:35 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 18:31:35 [info] TaskController {/task}:
+2025-10-29 18:31:35 [info] Mapped {/task/:id, GET} route
+2025-10-29 18:31:35 [info] Mapped {/task, GET} route
+2025-10-29 18:31:35 [info] Mapped {/task/createTask, POST} route
+2025-10-29 18:31:35 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 18:31:35 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 18:31:35 [info] AuthController {/auth}:
+2025-10-29 18:31:35 [info] Nest application successfully started
+2025-10-29 18:32:14 [info] Starting Nest application...
+2025-10-29 18:32:14 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:32:14 [info] ConfigHostModule dependencies initialized
+2025-10-29 18:32:14 [info] WinstonModule dependencies initialized
+2025-10-29 18:32:14 [info] JwtModule dependencies initialized
+2025-10-29 18:32:14 [info] DiscoveryModule dependencies initialized
+2025-10-29 18:32:14 [info] AppModule dependencies initialized
+2025-10-29 18:32:14 [info] ConfigModule dependencies initialized
+2025-10-29 18:32:14 [info] ScheduleModule dependencies initialized
+2025-10-29 18:32:14 [info] AuthModule dependencies initialized
+2025-10-29 18:32:14 [info] CacheModule dependencies initialized
+2025-10-29 18:32:14 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 18:32:14 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:32:14 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:32:14 [info] UserModule dependencies initialized
+2025-10-29 18:32:14 [info] TaskModule dependencies initialized
+2025-10-29 18:32:14 [info] AppController {/}:
+2025-10-29 18:32:14 [info] Mapped {/, GET} route
+2025-10-29 18:32:14 [info] UserController {/user}:
+2025-10-29 18:32:14 [info] Mapped {/user, GET} route
+2025-10-29 18:32:14 [info] Mapped {/user/signup, POST} route
+2025-10-29 18:32:14 [info] Mapped {/user/signin, POST} route
+2025-10-29 18:32:14 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 18:32:14 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 18:32:14 [info] TaskController {/task}:
+2025-10-29 18:32:14 [info] Mapped {/task/:id, GET} route
+2025-10-29 18:32:14 [info] Mapped {/task, GET} route
+2025-10-29 18:32:14 [info] Mapped {/task/createTask, POST} route
+2025-10-29 18:32:14 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 18:32:14 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 18:32:14 [info] AuthController {/auth}:
+2025-10-29 18:32:14 [info] Nest application successfully started
+2025-10-29 18:33:16 [info] Starting Nest application...
+2025-10-29 18:33:16 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:33:16 [info] ConfigHostModule dependencies initialized
+2025-10-29 18:33:16 [info] WinstonModule dependencies initialized
+2025-10-29 18:33:16 [info] JwtModule dependencies initialized
+2025-10-29 18:33:16 [info] DiscoveryModule dependencies initialized
+2025-10-29 18:33:16 [info] AppModule dependencies initialized
+2025-10-29 18:33:16 [info] ConfigModule dependencies initialized
+2025-10-29 18:33:16 [info] ScheduleModule dependencies initialized
+2025-10-29 18:33:16 [info] AuthModule dependencies initialized
+2025-10-29 18:33:16 [info] CacheModule dependencies initialized
+2025-10-29 18:33:16 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 18:33:16 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:33:16 [info] TypeOrmModule dependencies initialized
+2025-10-29 18:33:16 [info] UserModule dependencies initialized
+2025-10-29 18:33:16 [info] TaskModule dependencies initialized
+2025-10-29 18:33:16 [info] AppController {/}:
+2025-10-29 18:33:16 [info] Mapped {/, GET} route
+2025-10-29 18:33:16 [info] UserController {/user}:
+2025-10-29 18:33:16 [info] Mapped {/user, GET} route
+2025-10-29 18:33:16 [info] Mapped {/user/signup, POST} route
+2025-10-29 18:33:16 [info] Mapped {/user/signin, POST} route
+2025-10-29 18:33:16 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 18:33:16 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 18:33:16 [info] TaskController {/task}:
+2025-10-29 18:33:16 [info] Mapped {/task/:id, GET} route
+2025-10-29 18:33:16 [info] Mapped {/task, GET} route
+2025-10-29 18:33:16 [info] Mapped {/task/createTask, POST} route
+2025-10-29 18:33:16 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 18:33:16 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 18:33:16 [info] AuthController {/auth}:
+2025-10-29 18:33:16 [info] Nest application successfully started
+2025-10-29 19:01:43 [info] Starting Nest application...
+2025-10-29 19:01:43 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:01:43 [info] ConfigHostModule dependencies initialized
+2025-10-29 19:01:43 [info] WinstonModule dependencies initialized
+2025-10-29 19:01:43 [info] JwtModule dependencies initialized
+2025-10-29 19:01:43 [info] DiscoveryModule dependencies initialized
+2025-10-29 19:01:43 [info] AppModule dependencies initialized
+2025-10-29 19:01:43 [info] ConfigModule dependencies initialized
+2025-10-29 19:01:43 [info] ScheduleModule dependencies initialized
+2025-10-29 19:01:43 [info] AuthModule dependencies initialized
+2025-10-29 19:01:43 [info] CacheModule dependencies initialized
+2025-10-29 19:01:43 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 19:01:43 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:01:43 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:01:43 [info] UserModule dependencies initialized
+2025-10-29 19:01:43 [info] TaskModule dependencies initialized
+2025-10-29 19:01:43 [info] AppController {/}:
+2025-10-29 19:01:43 [info] Mapped {/, GET} route
+2025-10-29 19:01:43 [info] UserController {/user}:
+2025-10-29 19:01:43 [info] Mapped {/user, GET} route
+2025-10-29 19:01:43 [info] Mapped {/user/signup, POST} route
+2025-10-29 19:01:43 [info] Mapped {/user/signin, POST} route
+2025-10-29 19:01:43 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 19:01:43 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 19:01:43 [info] TaskController {/task}:
+2025-10-29 19:01:43 [info] Mapped {/task/:id, GET} route
+2025-10-29 19:01:43 [info] Mapped {/task, GET} route
+2025-10-29 19:01:43 [info] Mapped {/task/createTask, POST} route
+2025-10-29 19:01:43 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 19:01:43 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 19:01:43 [info] AuthController {/auth}:
+2025-10-29 19:01:43 [info] Nest application successfully started
+2025-10-29 19:03:23 [info] Starting Nest application...
+2025-10-29 19:03:23 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:03:23 [info] ConfigHostModule dependencies initialized
+2025-10-29 19:03:23 [info] WinstonModule dependencies initialized
+2025-10-29 19:03:23 [info] JwtModule dependencies initialized
+2025-10-29 19:03:23 [info] DiscoveryModule dependencies initialized
+2025-10-29 19:03:23 [info] AppModule dependencies initialized
+2025-10-29 19:03:23 [info] ConfigModule dependencies initialized
+2025-10-29 19:03:23 [info] ScheduleModule dependencies initialized
+2025-10-29 19:03:23 [info] AuthModule dependencies initialized
+2025-10-29 19:03:23 [info] CacheModule dependencies initialized
+2025-10-29 19:03:23 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 19:03:23 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:03:23 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:03:23 [info] UserModule dependencies initialized
+2025-10-29 19:03:23 [info] TaskModule dependencies initialized
+2025-10-29 19:03:23 [info] AppController {/}:
+2025-10-29 19:03:23 [info] Mapped {/, GET} route
+2025-10-29 19:03:23 [info] UserController {/user}:
+2025-10-29 19:03:23 [info] Mapped {/user, GET} route
+2025-10-29 19:03:23 [info] Mapped {/user/signup, POST} route
+2025-10-29 19:03:23 [info] Mapped {/user/signin, POST} route
+2025-10-29 19:03:23 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 19:03:23 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 19:03:23 [info] TaskController {/task}:
+2025-10-29 19:03:23 [info] Mapped {/task/:id, GET} route
+2025-10-29 19:03:23 [info] Mapped {/task, GET} route
+2025-10-29 19:03:23 [info] Mapped {/task/createTask, POST} route
+2025-10-29 19:03:23 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 19:03:23 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 19:03:23 [info] AuthController {/auth}:
+2025-10-29 19:03:23 [info] Nest application successfully started
+2025-10-29 19:04:18 [info] Starting Nest application...
+2025-10-29 19:04:18 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:04:18 [info] ConfigHostModule dependencies initialized
+2025-10-29 19:04:18 [info] WinstonModule dependencies initialized
+2025-10-29 19:04:18 [info] JwtModule dependencies initialized
+2025-10-29 19:04:18 [info] DiscoveryModule dependencies initialized
+2025-10-29 19:04:18 [info] AppModule dependencies initialized
+2025-10-29 19:04:18 [info] ConfigModule dependencies initialized
+2025-10-29 19:04:18 [info] ScheduleModule dependencies initialized
+2025-10-29 19:04:18 [info] AuthModule dependencies initialized
+2025-10-29 19:04:18 [info] CacheModule dependencies initialized
+2025-10-29 19:04:18 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 19:04:18 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:04:18 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:04:18 [info] UserModule dependencies initialized
+2025-10-29 19:04:18 [info] TaskModule dependencies initialized
+2025-10-29 19:04:18 [info] AppController {/}:
+2025-10-29 19:04:18 [info] Mapped {/, GET} route
+2025-10-29 19:04:18 [info] UserController {/user}:
+2025-10-29 19:04:18 [info] Mapped {/user, GET} route
+2025-10-29 19:04:18 [info] Mapped {/user/signup, POST} route
+2025-10-29 19:04:18 [info] Mapped {/user/signin, POST} route
+2025-10-29 19:04:18 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 19:04:18 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 19:04:18 [info] TaskController {/task}:
+2025-10-29 19:04:18 [info] Mapped {/task/:id, GET} route
+2025-10-29 19:04:18 [info] Mapped {/task, GET} route
+2025-10-29 19:04:18 [info] Mapped {/task/createTask, POST} route
+2025-10-29 19:04:18 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 19:04:18 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 19:04:18 [info] AuthController {/auth}:
+2025-10-29 19:04:18 [info] Nest application successfully started
+2025-10-29 19:12:26 [info] Starting Nest application...
+2025-10-29 19:12:26 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:12:26 [info] ConfigHostModule dependencies initialized
+2025-10-29 19:12:26 [info] WinstonModule dependencies initialized
+2025-10-29 19:12:26 [info] JwtModule dependencies initialized
+2025-10-29 19:12:26 [info] DiscoveryModule dependencies initialized
+2025-10-29 19:12:26 [info] AppModule dependencies initialized
+2025-10-29 19:12:26 [info] ConfigModule dependencies initialized
+2025-10-29 19:12:26 [info] ScheduleModule dependencies initialized
+2025-10-29 19:12:26 [info] AuthModule dependencies initialized
+2025-10-29 19:12:26 [info] CacheModule dependencies initialized
+2025-10-29 19:12:26 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 19:12:26 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:12:26 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:12:26 [info] UserModule dependencies initialized
+2025-10-29 19:12:26 [info] TaskModule dependencies initialized
+2025-10-29 19:12:26 [info] AppController {/}:
+2025-10-29 19:12:26 [info] Mapped {/, GET} route
+2025-10-29 19:12:26 [info] UserController {/user}:
+2025-10-29 19:12:26 [info] Mapped {/user, GET} route
+2025-10-29 19:12:26 [info] Mapped {/user/signup, POST} route
+2025-10-29 19:12:26 [info] Mapped {/user/signin, POST} route
+2025-10-29 19:12:26 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 19:12:26 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 19:12:26 [info] TaskController {/task}:
+2025-10-29 19:12:26 [info] Mapped {/task/:id, GET} route
+2025-10-29 19:12:26 [info] Mapped {/task, GET} route
+2025-10-29 19:12:26 [info] Mapped {/task/createTask, POST} route
+2025-10-29 19:12:26 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 19:12:26 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 19:12:26 [info] AuthController {/auth}:
+2025-10-29 19:12:26 [info] Nest application successfully started
+2025-10-29 19:13:29 [info] Starting Nest application...
+2025-10-29 19:13:29 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:13:29 [info] ConfigHostModule dependencies initialized
+2025-10-29 19:13:29 [info] WinstonModule dependencies initialized
+2025-10-29 19:13:29 [info] JwtModule dependencies initialized
+2025-10-29 19:13:29 [info] DiscoveryModule dependencies initialized
+2025-10-29 19:13:29 [info] AppModule dependencies initialized
+2025-10-29 19:13:29 [info] ConfigModule dependencies initialized
+2025-10-29 19:13:29 [info] ScheduleModule dependencies initialized
+2025-10-29 19:13:29 [info] AuthModule dependencies initialized
+2025-10-29 19:13:29 [info] CacheModule dependencies initialized
+2025-10-29 19:13:29 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 19:13:29 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:13:29 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:13:29 [info] UserModule dependencies initialized
+2025-10-29 19:13:29 [info] TaskModule dependencies initialized
+2025-10-29 19:13:29 [info] AppController {/}:
+2025-10-29 19:13:29 [info] Mapped {/, GET} route
+2025-10-29 19:13:29 [info] UserController {/user}:
+2025-10-29 19:13:29 [info] Mapped {/user, GET} route
+2025-10-29 19:13:29 [info] Mapped {/user/signup, POST} route
+2025-10-29 19:13:29 [info] Mapped {/user/signin, POST} route
+2025-10-29 19:13:29 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 19:13:29 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 19:13:29 [info] TaskController {/task}:
+2025-10-29 19:13:29 [info] Mapped {/task/:id, GET} route
+2025-10-29 19:13:29 [info] Mapped {/task, GET} route
+2025-10-29 19:13:29 [info] Mapped {/task/createTask, POST} route
+2025-10-29 19:13:29 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 19:13:29 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 19:13:29 [info] AuthController {/auth}:
+2025-10-29 19:13:29 [info] Nest application successfully started
+2025-10-29 19:13:38 [info] Starting Nest application...
+2025-10-29 19:13:38 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:13:38 [info] ConfigHostModule dependencies initialized
+2025-10-29 19:13:38 [info] WinstonModule dependencies initialized
+2025-10-29 19:13:38 [info] JwtModule dependencies initialized
+2025-10-29 19:13:38 [info] DiscoveryModule dependencies initialized
+2025-10-29 19:13:38 [info] AppModule dependencies initialized
+2025-10-29 19:13:38 [info] ConfigModule dependencies initialized
+2025-10-29 19:13:38 [info] ScheduleModule dependencies initialized
+2025-10-29 19:13:38 [info] AuthModule dependencies initialized
+2025-10-29 19:13:38 [info] CacheModule dependencies initialized
+2025-10-29 19:13:38 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 19:13:38 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:13:38 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:13:38 [info] UserModule dependencies initialized
+2025-10-29 19:13:38 [info] TaskModule dependencies initialized
+2025-10-29 19:13:38 [info] AppController {/}:
+2025-10-29 19:13:38 [info] Mapped {/, GET} route
+2025-10-29 19:13:38 [info] UserController {/user}:
+2025-10-29 19:13:38 [info] Mapped {/user, GET} route
+2025-10-29 19:13:38 [info] Mapped {/user/signup, POST} route
+2025-10-29 19:13:38 [info] Mapped {/user/signin, POST} route
+2025-10-29 19:13:38 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 19:13:38 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 19:13:38 [info] TaskController {/task}:
+2025-10-29 19:13:38 [info] Mapped {/task/:id, GET} route
+2025-10-29 19:13:38 [info] Mapped {/task, GET} route
+2025-10-29 19:13:38 [info] Mapped {/task/createTask, POST} route
+2025-10-29 19:13:38 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 19:13:38 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 19:13:38 [info] AuthController {/auth}:
+2025-10-29 19:13:38 [info] Nest application successfully started
+2025-10-29 19:14:23 [info] Starting Nest application...
+2025-10-29 19:14:23 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:14:23 [info] ConfigHostModule dependencies initialized
+2025-10-29 19:14:23 [info] WinstonModule dependencies initialized
+2025-10-29 19:14:23 [info] JwtModule dependencies initialized
+2025-10-29 19:14:23 [info] DiscoveryModule dependencies initialized
+2025-10-29 19:14:23 [info] AppModule dependencies initialized
+2025-10-29 19:14:23 [info] ConfigModule dependencies initialized
+2025-10-29 19:14:23 [info] ScheduleModule dependencies initialized
+2025-10-29 19:14:23 [info] AuthModule dependencies initialized
+2025-10-29 19:14:23 [info] CacheModule dependencies initialized
+2025-10-29 19:14:23 [info] TypeOrmCoreModule dependencies initialized
+2025-10-29 19:14:23 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:14:23 [info] TypeOrmModule dependencies initialized
+2025-10-29 19:14:23 [info] UserModule dependencies initialized
+2025-10-29 19:14:23 [info] TaskModule dependencies initialized
+2025-10-29 19:14:23 [info] AppController {/}:
+2025-10-29 19:14:23 [info] Mapped {/, GET} route
+2025-10-29 19:14:23 [info] UserController {/user}:
+2025-10-29 19:14:23 [info] Mapped {/user, GET} route
+2025-10-29 19:14:23 [info] Mapped {/user/signup, POST} route
+2025-10-29 19:14:23 [info] Mapped {/user/signin, POST} route
+2025-10-29 19:14:23 [info] Mapped {/user/:id, DELETE} route
+2025-10-29 19:14:23 [info] Mapped {/user/:id, PATCH} route
+2025-10-29 19:14:23 [info] TaskController {/task}:
+2025-10-29 19:14:23 [info] Mapped {/task/:id, GET} route
+2025-10-29 19:14:23 [info] Mapped {/task, GET} route
+2025-10-29 19:14:23 [info] Mapped {/task/createTask, POST} route
+2025-10-29 19:14:23 [info] Mapped {/task/:id, DELETE} route
+2025-10-29 19:14:23 [info] Mapped {/task/:id, PATCH} route
+2025-10-29 19:14:23 [info] AuthController {/auth}:
+2025-10-29 19:14:23 [info] Nest application successfully started

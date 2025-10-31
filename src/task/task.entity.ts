@@ -7,6 +7,8 @@ import {
 } from 'typeorm';
 import { User } from '../user/user.entity';
 
+import { Status } from './dto/TaskStatus';
+
 @Entity()
 export class Task {
   @PrimaryGeneratedColumn('uuid')
@@ -19,10 +21,10 @@ export class Task {
   description: string;
 
   @Column()
-  status: number;
+  status: Status;
 
   @ManyToOne(() => User, (user) => user.tasks, {
-    cascade: ['remove'],
+    onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
   user: User;

@@ -8,6 +8,7 @@ import {
   Patch,
   Param,
   Logger,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import {
   ClientProxy,
@@ -45,30 +46,42 @@ export class TaskController {
 
   @Get('/:id')
   getTaskBy(@Param('id') id: string) {
-    return this.taskService.findById(id);
+    try {
+      return this.taskService.findById(id);
+    } catch (error) {
+      throw new InternalServerErrorException('something went wrong!');
+    }
   }
 
   @Get()
   @CacheKey('all-tasks')
   @CacheTTL(300_000)
-  getAllTask() {
-    return this.taskService.findAll();
+  async getAllTask() {
+    try {
+      return await this.taskService.findAll();
+    } catch (err) {
+      throw new InternalServerErrorException('something went wrong!');
+    }
   }
 
   @Post('/createTask')
   async createTask(@Body() data: CreateTask) {
-    const user = await this.userService.findById(data.userId);
+    try {
+      const user = await this.userService.findById(data.userId);
 
-    if (!user) {
-      this.logger.error(
-        'the was no user found or the id was wrong(task creation faild)',
-      );
-      throw new BadRequestException();
+      if (!user) {
+        this.logger.error(
+          'the was no user found or the id was wrong(task creation faild)',
+        );
+        throw new BadRequestException();
+      }
+
+      const { userId, ...taskinfo } = data;
+      const task = { ...taskinfo, user: user };
+      return await this.taskService.createTask(task);
+    } catch (error) {
+      throw new InternalServerErrorException('something went wrong!');
     }
-
-    const { userId, ...taskinfo } = data;
-    const task = { ...taskinfo, user: user };
-    return await this.taskService.createTask(task);
   }
 
   // @MessagePattern('createTask')
@@ -90,11 +103,19 @@ export class TaskController {
 
   @Delete('/:id')
   deleteTask(@Param('id') id: string) {
-    return this.taskService.deleteTask(id);
+    try {
+      return this.taskService.deleteTask(id);
+    } catch (error) {
+      throw new InternalServerErrorException('something went wrong!');
+    }
   }
 
   @Patch('/:id')
   updateTask(@Body() body: updateTaskDto, @Param('id') id: string) {
-    return this.taskService.updateTask(id, body);
+    try {
+      return this.taskService.updateTask(id, body);
+    } catch (error) {
+      throw new InternalServerErrorException('something went wrong!');
+    }
   }
 }

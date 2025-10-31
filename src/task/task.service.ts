@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 //internal Imports
 import { Task } from './task.entity';
 import { CreateTask } from './dto/createTask.dto';
+import { Status } from './dto/TaskStatus';
 
 @Injectable()
 export class TaskService {
@@ -14,16 +15,20 @@ export class TaskService {
 
   @Cron('* */10 * * * *')
   async scheduler() {
-    const pending = await this.repo.find({ where: { status: 1 } });
-    const inProgress = await this.repo.find({ where: { status: 2 } });
+    const pending = await this.repo.find({
+      where: { status: Status.PENDDING },
+    });
+    const inProgress = await this.repo.find({
+      where: { status: Status.IN_PRPGRESS },
+    });
 
     for (const task of pending) {
-      task.status = 2;
+      task.status = Status.IN_PRPGRESS;
       await this.repo.save(task);
     }
 
     for (const task of inProgress) {
-      task.status = 1;
+      task.status = Status.PENDDING;
       await this.repo.save(task);
     }
   }
@@ -37,7 +42,7 @@ export class TaskService {
   }
 
   async createTask(data) {
-    const task = this.repo.create(data);
+    const task = await this.repo.create(data);
 
     return await this.repo.save(task);
   }
@@ -49,7 +54,7 @@ export class TaskService {
       this.logger.error(
         'the task was not found, or the task id was wrong (taask deletion faild)',
       );
-      throw new BadRequestException();
+      throw new BadRequestException('user not found');
     }
 
     return await this.repo.remove(task);

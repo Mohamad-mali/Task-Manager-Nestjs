@@ -8,6 +8,8 @@ import {
   Delete,
   UseGuards,
   Logger,
+  InternalServerErrorException,
+  UseInterceptors,
 } from '@nestjs/common';
 import { BadRequestException } from '@nestjs/common';
 
@@ -17,6 +19,8 @@ import { LoginUser } from './dto/signin.dto';
 import { UserService } from './user.service';
 import { updateUserDto } from './dto/updatUser.dto';
 import { AuthGuard } from '../auth/auth.guard';
+import { Serialize } from '../interceptors/serialize.interceptors';
+import { userDto } from './dto/user.dto';
 
 @Controller('user')
 export class UserController {
@@ -25,33 +29,55 @@ export class UserController {
 
   @Get()
   @UseGuards(AuthGuard)
+  @UseInterceptors(new Serialize(userDto))
   userList() {
-    return this.userServices.findAll();
+    try {
+      return this.userServices.findAll();
+    } catch (error) {
+      throw new InternalServerErrorException('something went wrong!');
+    }
   }
 
   @Post('/signup')
+  @UseInterceptors(new Serialize(userDto))
   createUser(@Body() body: CreateUser) {
-    return this.userServices.createUser(
-      body.email,
-      body.password,
-      body.userName,
-    );
+    try {
+      return this.userServices.createUser(
+        body.email,
+        body.password,
+        body.userName,
+      );
+    } catch (error) {
+      throw new InternalServerErrorException('something went wrong!');
+    }
   }
 
   @Post('/signin')
   loginUser(@Body() body: LoginUser) {
-    return this.userServices.loging(body.userName, body.password);
+    try {
+      return this.userServices.loging(body.userName, body.password);
+    } catch (error) {
+      throw new InternalServerErrorException('something went wrong!');
+    }
   }
 
   @UseGuards(AuthGuard)
   @Delete('/:id')
   deleteUser(@Param('id') id: string) {
-    return this.userServices.deleteUser(id);
+    try {
+      return this.userServices.deleteUser(id);
+    } catch (error) {
+      throw new InternalServerErrorException('something went wrong!');
+    }
   }
 
   @UseGuards(AuthGuard)
   @Patch('/:id')
   updateUser(@Body() body: updateUserDto, @Param('id') id: string) {
-    return this.userServices.updateUser(id, body);
+    try {
+      return this.userServices.updateUser(id, body);
+    } catch (error) {
+      throw new InternalServerErrorException('something went wrong!');
+    }
   }
 }
