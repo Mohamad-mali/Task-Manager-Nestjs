@@ -20,7 +20,7 @@ export class UserService {
 
   constructor(
     @InjectRepository(User) private repo: Repository<User>,
-    @InjectRepository(Task) private taskRepo: Repository<Task>,
+    //@InjectRepository(Task) private taskRepo: Repository<Task>,
     private jwtservice: JwtService,
   ) {}
 
@@ -50,14 +50,13 @@ export class UserService {
     return await this.repo.save(user);
   }
 
-  async loging(userName: string, password: string) {
-    const user = await this.repo.findOne({ where: { userName: userName } });
+  async loging(email: string, password: string) {
+    const user = await this.repo.findOne({ where: { email } });
 
     if (!user) {
       throw new NotFoundException();
     }
     const isPass = await brypt.compare(password, user.password);
-    console.log(isPass);
 
     if (!isPass) {
       throw new BadRequestException();

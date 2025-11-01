@@ -2,7 +2,7 @@ import { IsString, Length } from 'class-validator';
 
 export class LoginUser {
   @IsString()
-  userName: string;
+  email: string;
 
   @IsString()
   @Length(8, 30)

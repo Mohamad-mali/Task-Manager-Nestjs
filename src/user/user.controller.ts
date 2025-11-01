@@ -55,7 +55,7 @@ export class UserController {
   @Post('/signin')
   loginUser(@Body() body: LoginUser) {
     try {
-      return this.userServices.loging(body.userName, body.password);
+      return this.userServices.loging(body.email, body.password);
     } catch (error) {
       throw new InternalServerErrorException('something went wrong!');
     }

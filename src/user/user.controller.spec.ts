@@ -4,47 +4,70 @@ import { UserService } from './user.service';
 import { Task } from '../task/task.entity';
 import { User } from './user.entity';
 import { JwtService } from '@nestjs/jwt';
+import { AuthGuard } from '../auth/auth.guard';
 
 describe('UserController', () => {
   let controller: UserController;
-  // let service: UserService;
+
+  let users: User[] = [
+    { email: 'tst@tst.com', password: 'hashedpass' } as User,
+    { email: 'tst1@tst.com', password: 'hashedpass1' } as User,
+  ];
+
+  let FakeUserService: Partial<UserService> = {
+    findAll: () => {
+      return Promise.resolve(users);
+    },
+    loging: (email: string, password: string) => {
+      return Promise.resolve({ access_token: 'the token' });
+    },
+    createUser: (email: string, password: string, userName: string) => {
+      return Promise.resolve({ email, password, userName } as User);
+    },
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [JwtService],
       controllers: [UserController],
-      providers: [Task, User],
+      providers: [
+        {
+          provide: UserService,
+          useValue: FakeUserService,
+        },
+        JwtService,
+      ],
     }).compile();
 
     controller = module.get(UserController);
-    // service = module.get(UserService);
   });
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
-    // expect(service).toBeDefined();
   });
 
-  describe('findAll', () => {
-    it('should Show all users in arry', async () => {
-      const result: [
-        { id: string; userName: string; email: string; password: string },
-      ] = [
-        {
-          id: 'sajdlsjdlkas',
-          userName: 'adsdasdas',
-          email: 'asdasdas',
-          password: ' asdasdasd ',
-        },
-      ];
+  it('should give an arry of users', async () => {
+    const users = await controller.userList();
+    expect(users.length).toEqual(2);
+    expect(users[1].email).toEqual('tst1@tst.com');
+  });
 
-      let res: [] = [];
-
-      // jest
-      //   .spyOn(service, 'findAll')
-      //   .mockImplementation(() => Promise.resolve(res));
-
-      expect(await controller.userList()).toBe(res);
+  it('should give me the access token', async () => {
+    const { access_token } = await controller.loginUser({
+      email: 'tst@tst.com',
+      password: 'hashedpass',
     });
+    expect(access_token).toEqual('the token');
+  });
+
+  it('should return a user instance', async () => {
+    const body = {
+      email: 'tst2@tst.com',
+      password: 'hashedpass',
+      userName: 'tster',
+    };
+    const user = await controller.createUser(body);
+
+    expect(user).toBeDefined();
+    expect(user).toEqual(body);
   });
 });
