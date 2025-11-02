@@ -51,7 +51,7 @@ describe('UserService', () => {
       return Promise.resolve(user);
     },
     remove: async (user: User) => {
-      users.filter((obj) => obj.id !== user.id);
+      users = users.filter((obj) => obj.id !== user.id);
       return Promise.resolve();
     },
   };
@@ -121,10 +121,28 @@ describe('UserService', () => {
     const hashPass = await brypt.hash('password', 12);
     await service.createUser('tst6@tst.com', hashPass, 'tester');
 
-    const user1: any = await users.filter(
+    let user1: any = await users.filter(
       (user) => user.email === 'tst6@tst.com',
     );
 
     await service.deleteUser(user1[0].id);
+
+    user1 = await users.filter((user) => user.email === 'tst6@tst.com');
+    expect(user1).toEqual([]);
+  });
+
+  it('it should update an user with given id', async () => {
+    const hashPass = await brypt.hash('password', 12);
+    await service.createUser('tst7@tst.com', hashPass, 'tester');
+
+    const user1: any = await users.filter(
+      (user) => user.email === 'tst7@tst.com',
+    );
+
+    expect(user1[0].email).toEqual('tst7@tst.com');
+
+    await service.updateUser(user1[0].id, { email: 'tst8@tst.com' });
+
+    expect(user1[0].email).toEqual('tst8@tst.com');
   });
 });
