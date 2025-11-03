@@ -10,7 +10,7 @@ Nest js centered api for a TaskManger app
 
 ## Running the project on local
 
-You find some the guides for the configuration in the env file too!!
+You find some guides for the configuration in the env file too!!
 
 ### DATABASE SETUP
 
