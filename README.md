@@ -5,7 +5,9 @@ Nest js centered api for a TaskManger app
 -porject needs-
 
 postgress SQL, or any type of SQL Database
+
 Redis
+
 Node v22.18
 
 --Running the project on local--
