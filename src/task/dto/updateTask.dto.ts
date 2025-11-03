@@ -1,4 +1,4 @@
-import { IsOptional, Length, Max, Min } from 'class-validator';
+import { IsOptional, IsUUID, Length, Max, Min } from 'class-validator';
 
 import { Status } from './TaskStatus';
 
@@ -10,7 +10,9 @@ export class updateTaskDto {
   description: string;
 
   @IsOptional()
-  @Min(1)
-  @Max(3)
+  @IsUUID()
+  assign: string;
+
+  @IsOptional()
   status: Status;
 }

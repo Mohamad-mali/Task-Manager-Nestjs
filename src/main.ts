@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 //internal Imports
 import { winstonLogger } from '../logger';
@@ -12,17 +11,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: winstonLogger,
   });
-
-  // app.connectMicroservice<MicroserviceOptions>({
-  //   transport: Transport.RMQ,
-  //   options: {
-  //     urls: ['amqp://rabbit:5672'],
-  //     queue: 'taskQueue',
-  //     queueOptions: {
-  //       durable: true,
-  //     },
-  //   },
-  // });
 
   const config = new DocumentBuilder()
     .setTitle('Task Manager API')
@@ -37,6 +25,6 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionsFilter());
 
   await app.startAllMicroservices();
-  await app.listen(3000);
+  await app.listen(process.env.APP_PORT || 3000);
 }
 bootstrap();

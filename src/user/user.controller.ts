@@ -8,10 +8,9 @@ import {
   Delete,
   UseGuards,
   Logger,
-  InternalServerErrorException,
   UseInterceptors,
+  Query,
 } from '@nestjs/common';
-import { BadRequestException } from '@nestjs/common';
 
 //internal Imports
 import { CreateUser } from './dto/signup.dto';
@@ -22,6 +21,9 @@ import { AuthGuard } from '../auth/auth.guard';
 import { Serialize } from '../interceptors/serialize.interceptors';
 import { userDto } from './dto/user.dto';
 
+//Custom Types
+import type { Pagination } from '../Types/pagination.type';
+
 @Controller('user')
 export class UserController {
   private readonly logger = new Logger(UserService.name);
@@ -30,54 +32,39 @@ export class UserController {
   @Get()
   @UseGuards(AuthGuard)
   @UseInterceptors(new Serialize(userDto))
-  userList() {
-    try {
-      return this.userServices.findAll();
-    } catch (error) {
-      throw new InternalServerErrorException('something went wrong!');
-    }
+  async userList(@Query('page') page?: number, @Query('take') take?: number) {
+    const data: Pagination = {
+      page,
+      take,
+    };
+
+    return await this.userServices.findAll(data);
   }
 
   @Post('/signup')
   @UseInterceptors(new Serialize(userDto))
-  createUser(@Body() body: CreateUser) {
-    try {
-      return this.userServices.createUser(
-        body.email,
-        body.password,
-        body.userName,
-      );
-    } catch (error) {
-      throw new InternalServerErrorException('something went wrong!');
-    }
+  async createUser(@Body() body: CreateUser) {
+    return await this.userServices.createUser(
+      body.email,
+      body.password,
+      body.userName,
+    );
   }
 
   @Post('/signin')
-  loginUser(@Body() body: LoginUser) {
-    try {
-      return this.userServices.loging(body.email, body.password);
-    } catch (error) {
-      throw new InternalServerErrorException('something went wrong!');
-    }
+  async loginUser(@Body() body: LoginUser) {
+    return await this.userServices.loging(body.email, body.password);
   }
 
   @UseGuards(AuthGuard)
   @Delete('/:id')
-  deleteUser(@Param('id') id: string) {
-    try {
-      return this.userServices.deleteUser(id);
-    } catch (error) {
-      throw new InternalServerErrorException('something went wrong!');
-    }
+  async deleteUser(@Param('id') id: string) {
+    return await this.userServices.deleteUser(id);
   }
 
   @UseGuards(AuthGuard)
   @Patch('/:id')
-  updateUser(@Body() body: updateUserDto, @Param('id') id: string) {
-    try {
-      return this.userServices.updateUser(id, body);
-    } catch (error) {
-      throw new InternalServerErrorException('something went wrong!');
-    }
+  async updateUser(@Body() body: updateUserDto, @Param('id') id: string) {
+    return await this.userServices.updateUser(id, body);
   }
 }

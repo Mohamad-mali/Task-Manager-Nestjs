@@ -23,6 +23,12 @@ export class Task {
   @Column()
   status: Status;
 
+  @Column({ default: 'none' })
+  assign: string;
+
+  @Column({ default: false })
+  hidden: boolean;
+
   @ManyToOne(() => User, (user) => user.tasks, {
     onDelete: 'CASCADE',
   })

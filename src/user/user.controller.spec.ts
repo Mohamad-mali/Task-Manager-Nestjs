@@ -1,10 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
-import { Task } from '../task/task.entity';
 import { User } from './user.entity';
 import { JwtService } from '@nestjs/jwt';
-import { AuthGuard } from '../auth/auth.guard';
+import { DeepPartial } from 'typeorm';
 
 describe('UserController', () => {
   let controller: UserController;
@@ -14,7 +13,7 @@ describe('UserController', () => {
     { email: 'tst1@tst.com', password: 'hashedpass1' } as User,
   ];
 
-  let FakeUserService: Partial<UserService> = {
+  let FakeUserService: DeepPartial<UserService> = {
     findAll: () => {
       return Promise.resolve(users);
     },
@@ -47,6 +46,8 @@ describe('UserController', () => {
 
   it('should give an arry of users', async () => {
     const users = await controller.userList();
+
+    console.log(users);
     expect(users.length).toEqual(2);
     expect(users[1].email).toEqual('tst1@tst.com');
   });

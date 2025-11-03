@@ -24,12 +24,12 @@ import { WinstonLoggerModule } from '../logger.config';
     TaskModule,
     AuthModule,
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.POSTGRES_HOST,
+      type: (process.env.DB_TYPE as any) || 'postgres',
+      host: process.env.POSTGRES_HOST || 'localhost',
       port: Number(process.env.POSTGRES_PORT) || 5432,
-      username: process.env.POSTGRES_USER,
+      username: process.env.POSTGRES_USER || 'root',
       password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_DB,
+      database: process.env.POSTGRES_DB || 'TaskManager',
       entities: [User, Task],
       synchronize: true,
     }),
@@ -38,10 +38,10 @@ import { WinstonLoggerModule } from '../logger.config';
       useFactory: async () => ({
         store: await redisStore({
           socket: {
-            host: process.env.REDIS_HOST,
+            host: process.env.REDIS_HOST || 'localhost',
             port: Number(process.env.REDIS_PORT) || 6379,
           },
-          ttl: 60 * 5 * 1000,
+          ttl: (process.env.TTL as any) || 60 * 5,
         }),
       }),
     }),

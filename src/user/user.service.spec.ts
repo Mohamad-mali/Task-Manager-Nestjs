@@ -1,17 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DeepPartial, FindOneOptions, Repository } from 'typeorm';
+import { DeepPartial, Repository } from 'typeorm';
 import * as brypt from 'bcrypt';
 
 import { UserService } from './user.service';
 import { User } from './user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import {
-  BadRequestException,
-  flatten,
-  NotFoundException,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 describe('UserService', () => {
   let service: UserService;
@@ -28,7 +23,6 @@ describe('UserService', () => {
         (user) => user[key[0]] === options.where[key[0]],
       );
 
-      // console.log(user);
       let res;
 
       if (user.length) {
@@ -141,7 +135,12 @@ describe('UserService', () => {
 
     expect(user1[0].email).toEqual('tst7@tst.com');
 
-    await service.updateUser(user1[0].id, { email: 'tst8@tst.com' });
+    await service.updateUser(user1[0].id, {
+      email: 'tst8@tst.com',
+      userName: '',
+      newPassword: '',
+      oldPassword: '',
+    });
 
     expect(user1[0].email).toEqual('tst8@tst.com');
   });

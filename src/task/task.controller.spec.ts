@@ -32,15 +32,13 @@ describe('TaskController', () => {
       ] as Task[]);
     },
     createTask: (data) => {
-      return Promise.resolve([
-        {
-          id: '3',
-          title: data.title,
-          description: data.description,
-          status: data.status,
-          userId: data.user.id,
-        } as Task,
-      ]);
+      return Promise.resolve({
+        id: '3',
+        title: data.title,
+        description: data.description,
+        status: data.status,
+        userId: data.userId,
+      } as Task);
     },
   };
 
@@ -82,6 +80,6 @@ describe('TaskController', () => {
   });
 
   it('should return a list of task', async () => {
-    const tasks = await controller.getAllTask();
+    const tasks = await controller.getAllTask(1, 10);
   });
 });

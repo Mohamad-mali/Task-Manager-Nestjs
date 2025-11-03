@@ -7,115 +7,66 @@ import {
   Delete,
   Patch,
   Param,
+  Query,
   Logger,
-  InternalServerErrorException,
 } from '@nestjs/common';
-import {
-  ClientProxy,
-  ClientProxyFactory,
-  Transport,
-  MessagePattern,
-} from '@nestjs/microservices';
 import { CacheInterceptor, CacheKey, CacheTTL } from '@nestjs/cache-manager';
-import { BadRequestException } from '@nestjs/common';
 
 //internal Imports
 import { CreateTask } from './dto/createTask.dto';
 import { updateTaskDto } from './dto/updateTask.dto';
 import { TaskService } from './task.service';
-import { UserService } from '../user/user.service';
+
+//Custom Types
+import type { Pagination } from '../Types/pagination.type';
 
 @Controller('task')
 @UseInterceptors(CacheInterceptor)
 export class TaskController {
-  // private client: ClientProxy;
   private readonly logger = new Logger(TaskService.name);
 
-  constructor(
-    private taskService: TaskService,
-    private userService: UserService,
-  ) {
-    // this.client = ClientProxyFactory.create({
-    //   transport: Transport.RMQ,
-    //   options: {
-    //     urls: ['amqp://localhost:5672'],
-    //     queue: 'taskQueue',
-    //   },
-    // });
-  }
-
-  @Get('/:id')
-  getTaskBy(@Param('id') id: string) {
-    try {
-      return this.taskService.findById(id);
-    } catch (error) {
-      throw new InternalServerErrorException('something went wrong!');
-    }
-  }
+  constructor(private taskService: TaskService) {}
 
   @Get()
   @CacheKey('all-tasks')
   @CacheTTL(300_000)
-  async getAllTask() {
-    try {
-      return await this.taskService.findAll();
-    } catch (err) {
-      throw new InternalServerErrorException('something went wrong!');
-    }
+  async getAllTask(@Query('page') page: number, @Query('take') take?: number) {
+    const data: Pagination = {
+      page,
+      take,
+    };
+    return await this.taskService.findAll(data);
+  }
+
+  @Get('/deleted')
+  async getHiddentasks(
+    @Query('page') page: number,
+    @Query('take') take?: number,
+  ) {
+    const data: Pagination = {
+      page,
+      take,
+    };
+    return await this.taskService.findHidden(data);
   }
 
   @Post('/createTask')
   async createTask(@Body() data: CreateTask) {
-    try {
-      const user = await this.userService.findById(data.userId);
-
-      if (!user) {
-        this.logger.error(
-          'the was no user found or the id was wrong(task creation faild)',
-        );
-        throw new BadRequestException();
-      }
-
-      const { userId, ...taskinfo } = data;
-      const task = { ...taskinfo, user: user };
-      return await this.taskService.createTask(task);
-    } catch (error) {
-      throw new InternalServerErrorException('something went wrong!');
-    }
+    return await this.taskService.createTask(data);
   }
 
-  // @MessagePattern('createTask')
-  // async taskCreate(data: CreateTask) {
-  //   const user = await this.userService.findById(data.userId);
-
-  //   if (!user) {
-  //     this.logger.error(
-  //       'the was no user found or the id was wrong(task creation faild)',
-  //     );
-  //     throw new BadRequestException();
-  //   }
-  //   console.log('you got her');
-
-  //   const { userId, ...taskinfo } = data;
-  //   const task = { ...taskinfo, user: user };
-  //   return await this.taskService.createTask(task);
-  // }
+  @Get('/:id')
+  async getTaskBy(@Param('id') id: string) {
+    return await this.taskService.findById(id);
+  }
 
   @Delete('/:id')
-  deleteTask(@Param('id') id: string) {
-    try {
-      return this.taskService.deleteTask(id);
-    } catch (error) {
-      throw new InternalServerErrorException('something went wrong!');
-    }
+  async deleteTask(@Param('id') id: string) {
+    return await this.taskService.deleteTask(id);
   }
 
   @Patch('/:id')
-  updateTask(@Body() body: updateTaskDto, @Param('id') id: string) {
-    try {
-      return this.taskService.updateTask(id, body);
-    } catch (error) {
-      throw new InternalServerErrorException('something went wrong!');
-    }
+  async updateTask(@Body() body: updateTaskDto, @Param('id') id: string) {
+    return await this.taskService.updateTask(id, body);
   }
 }
