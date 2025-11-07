@@ -69,6 +69,18 @@ describe('UserService', () => {
     expect(service).toBeDefined();
   });
 
+  it('should give a list of users', async () => {
+    const users = await service.findAll({});
+
+    expect(users).toBeTruthy();
+  });
+
+  it('should not find a user by id', async () => {
+    await expect(service.findById('123671236812asdas')).rejects.toThrow(
+      NotFoundException,
+    );
+  });
+
   it('should create a new user', async () => {
     const hashPass = await brypt.hash('password', 12);
 
@@ -87,6 +99,24 @@ describe('UserService', () => {
     ).rejects.toThrow(BadRequestException);
   });
 
+  it('Should throw an error and not create the new user', async () => {
+    const hashPass = await brypt.hash('password', 12);
+    await service.createUser('tst222@tst.com', hashPass, 'tester');
+
+    await expect(
+      service.createUser('tstlog2@tst.com', hashPass, 'tester'),
+    ).rejects.toThrow(BadRequestException);
+  });
+
+  it('Should throw an error and not create the new user', async () => {
+    const hashPass = await brypt.hash('password', 12);
+    await service.createUser('tst22@tst.com', hashPass, 'tester');
+
+    await expect(
+      service.createUser('tst12@tst.com', hashPass, 'console'),
+    ).rejects.toThrow(BadRequestException);
+  });
+
   it('should NOT login', async () => {
     const hashPass = await brypt.hash('password', 12);
     await service.createUser('tst3@tst.com', hashPass, 'tester');
@@ -94,6 +124,24 @@ describe('UserService', () => {
     await expect(service.loging('tst3@tst.com', 'password1')).rejects.toThrow(
       BadRequestException,
     );
+  });
+
+  it('should NOT login dude to unvalid email and forbiden words', async () => {
+    const hashPass = await brypt.hash('password', 12);
+    await service.createUser('tst23@tst.com', hashPass, 'tester');
+
+    await expect(
+      service.loging('tstlog23@tst.com', 'password'),
+    ).rejects.toThrow(BadRequestException);
+  });
+
+  it('should NOT login dude to unvalid password and forbiden words', async () => {
+    const hashPass = await brypt.hash('password', 12);
+    await service.createUser('tst33@tst.com', hashPass, 'tester');
+
+    await expect(
+      service.loging('tst33@tst.com', 'passwordlog'),
+    ).rejects.toThrow(BadRequestException);
   });
 
   it('should login', async () => {
@@ -125,6 +173,19 @@ describe('UserService', () => {
     expect(user1).toEqual([]);
   });
 
+  it('it should delete a user with given id', async () => {
+    const hashPass = await brypt.hash('password11', 12);
+    await service.createUser('tst16@tst.com', hashPass, 'tester');
+
+    let user1: any = await users.filter(
+      (user) => user.email === 'tst16@tst.com',
+    );
+
+    await expect(service.deleteUser('dasdasdw12312314')).rejects.toThrow(
+      NotFoundException,
+    );
+  });
+
   it('it should update an user with given id', async () => {
     const hashPass = await brypt.hash('password', 12);
     await service.createUser('tst7@tst.com', hashPass, 'tester');
@@ -143,5 +204,65 @@ describe('UserService', () => {
     });
 
     expect(user1[0].email).toEqual('tst8@tst.com');
+  });
+
+  it('it shouldnot update an user with given id becuse forbidword in email', async () => {
+    const hashPass = await brypt.hash('password', 12);
+    await service.createUser('tst17@tst.com', hashPass, 'tester');
+
+    const user1: any = await users.filter(
+      (user) => user.email === 'tst17@tst.com',
+    );
+
+    expect(user1[0].email).toEqual('tst17@tst.com');
+
+    await expect(
+      service.updateUser(user1[0].id, {
+        email: 'tstlog8@tst.com',
+        userName: '',
+        newPassword: '',
+        oldPassword: '',
+      }),
+    ).rejects.toThrow(BadRequestException);
+  });
+
+  it('it shouldnot update an user with given id becuse forbidword in username', async () => {
+    const hashPass = await brypt.hash('password', 12);
+    await service.createUser('tst27@tst.com', hashPass, 'tester');
+
+    const user1: any = await users.filter(
+      (user) => user.email === 'tst27@tst.com',
+    );
+
+    expect(user1[0].email).toEqual('tst27@tst.com');
+
+    await expect(
+      service.updateUser(user1[0].id, {
+        email: '',
+        userName: 'log',
+        newPassword: '',
+        oldPassword: '',
+      }),
+    ).rejects.toThrow(BadRequestException);
+  });
+
+  it('it shouldnot update an user with given id becuse forbidword in newpassword', async () => {
+    const hashPass = await brypt.hash('password', 12);
+    await service.createUser('tst37@tst.com', hashPass, 'tester');
+
+    const user1: any = await users.filter(
+      (user) => user.email === 'tst37@tst.com',
+    );
+
+    expect(user1[0].email).toEqual('tst37@tst.com');
+
+    await expect(
+      service.updateUser(user1[0].id, {
+        email: '',
+        userName: '',
+        newPassword: 'console',
+        oldPassword: '',
+      }),
+    ).rejects.toThrow(BadRequestException);
   });
 });

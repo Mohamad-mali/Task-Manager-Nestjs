@@ -1,16 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import {
-  CACHE_MANAGER,
-  CacheInterceptor,
-  CacheKey,
-  CacheTTL,
-} from '@nestjs/cache-manager';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { TaskController } from './task.controller';
 import { TaskService } from './task.service';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user.entity';
 import { Task } from './task.entity';
-import { CreateTask } from './dto/createTask.dto';
+import { CreateTask } from './DTO/createTask.DTO';
 
 describe('TaskController', () => {
   let controller: TaskController;

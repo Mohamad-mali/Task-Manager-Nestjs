@@ -4,6 +4,7 @@ import { UserService } from './user.service';
 import { User } from './user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { DeepPartial } from 'typeorm';
+import { updateUserDto } from './DTO/updatUser.DTO';
 
 describe('UserController', () => {
   let controller: UserController;
@@ -22,6 +23,16 @@ describe('UserController', () => {
     },
     createUser: (email: string, password: string, userName: string) => {
       return Promise.resolve({ email, password, userName } as User);
+    },
+    updateUser: (id, body) => {
+      return Promise.resolve(body);
+    },
+    deleteUser: (id) => {
+      return Promise.resolve({
+        id: id,
+        message: 'user was deleted',
+        statusCode: 200,
+      });
     },
   };
 
@@ -47,7 +58,6 @@ describe('UserController', () => {
   it('should give an arry of users', async () => {
     const users = await controller.userList();
 
-    console.log(users);
     expect(users.length).toEqual(2);
     expect(users[1].email).toEqual('tst1@tst.com');
   });
@@ -70,5 +80,25 @@ describe('UserController', () => {
 
     expect(user).toBeDefined();
     expect(user).toEqual(body);
+  });
+
+  it('should update a user', async () => {
+    const body: updateUserDto = {
+      email: 'tester@tester.com',
+      userName: '',
+      oldPassword: '',
+      newPassword: '',
+    };
+
+    const res = await controller.updateUser(body, '1');
+
+    expect(res.email).toEqual(body.email);
+  });
+
+  it('should delete a user', async () => {
+    const res: any = await controller.deleteUser('1');
+
+    expect(res.id).toEqual('1');
+    expect(res.statusCode).toEqual(200);
   });
 });

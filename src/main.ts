@@ -24,7 +24,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.useGlobalFilters(new AllExceptionsFilter());
 
-  await app.startAllMicroservices();
   await app.listen(process.env.APP_PORT || 3000);
 }
 bootstrap();

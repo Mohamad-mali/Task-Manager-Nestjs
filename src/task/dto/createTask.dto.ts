@@ -1,6 +1,6 @@
 import { IsNumber, IsOptional, IsString, Length } from 'class-validator';
 
-import { Status } from './TaskStatus';
+import { Status } from '../types/TaskStatus';
 
 export class CreateTask {
   @IsString()

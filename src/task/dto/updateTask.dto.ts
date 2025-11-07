@@ -1,6 +1,6 @@
 import { IsOptional, IsUUID, Length, Max, Min } from 'class-validator';
 
-import { Status } from './TaskStatus';
+import { Status } from '../types/TaskStatus';
 
 export class updateTaskDto {
   @IsOptional()

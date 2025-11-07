@@ -13,8 +13,8 @@ import { JwtService } from '@nestjs/jwt';
 import { User } from './user.entity';
 
 //Custom Types
-import type { Pagination } from '../Types/pagination.type';
-import { updateUserDto } from './dto/updatUser.dto';
+import type { Pagination } from './types/pagination.type';
+import { updateUserDto } from './DTO/updatUser.DTO';
 
 @Injectable()
 export class UserService {
@@ -23,13 +23,42 @@ export class UserService {
     private jwtservice: JwtService,
   ) {}
 
+  private forbidenWord = [
+    'root',
+    'user',
+    'scripts',
+    'script',
+    'console',
+    'log',
+    'admin',
+    'host',
+    'get',
+    '<>',
+    `'`,
+    `"`,
+    ':',
+    `()`,
+    '(',
+    ')',
+    '<',
+    '>',
+  ];
+
   private async checkPassword(password: string, user: User) {
     return await brypt.compare(password, user.password);
   }
 
-  async findAll(data: Pagination) {
-    const take = data.take || 10;
-    const skip = ((data.page || 1) - 1) * take;
+  async findAll(data?: Pagination) {
+    let take: number;
+    let skip: number;
+
+    if (data) {
+      take = data.take || 10;
+      skip = ((data.page || 1) - 1) * take;
+    } else {
+      take = 10;
+      skip = 0;
+    }
 
     try {
       return await this.repo.find({ take: take, skip: skip });
@@ -41,8 +70,13 @@ export class UserService {
   }
 
   async findById(id: string) {
+    const user = await this.repo.findOne({ where: { id: id } });
+
+    if (!user) {
+      throw new NotFoundException('no user found by the id');
+    }
     try {
-      return await this.repo.findOne({ where: { id: id } });
+      return user;
     } catch (error) {
       throw new InternalServerErrorException(
         `sound like we were unable to fetch the user by id. please try again leter.`,
@@ -53,11 +87,42 @@ export class UserService {
   async createUser(email: string, password: string, userName: string) {
     const isUser = await this.repo.findOne({ where: { email: email } });
 
+    if (
+      this.forbidenWord.some((word) =>
+        email.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid email, dont include forbiden words!!!',
+      );
+    }
+
+    if (
+      this.forbidenWord.some((word) =>
+        userName.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid username, dont include forbiden words!!!',
+      );
+    }
+
+    if (
+      this.forbidenWord.some((word) =>
+        password.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid password, dont include forbiden words!!!',
+      );
+    }
+
     if (isUser) {
       throw new BadRequestException(
         'this email is already in use!! Try a diffrent email or go to the sign in!',
       );
     }
+
     try {
       const hashPass = await brypt.hash(password, 12);
 
@@ -77,6 +142,26 @@ export class UserService {
 
   async loging(email: string, password: string) {
     const user = await this.repo.findOne({ where: { email } });
+
+    if (
+      this.forbidenWord.some((word) =>
+        email.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid email, dont include forbiden words!!!',
+      );
+    }
+
+    if (
+      this.forbidenWord.some((word) =>
+        password.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid password, dont include forbiden words!!!',
+      );
+    }
 
     if (!user) {
       throw new NotFoundException('Email NOt found in our Database!!!');
@@ -120,7 +205,44 @@ export class UserService {
     let hashPass: string | undefined = undefined;
     const user = await this.findById(id);
 
-    console.log(atters);
+    if (
+      this.forbidenWord.some((word) =>
+        atters.email.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid email, dont include forbiden words!!!',
+      );
+    }
+
+    if (
+      this.forbidenWord.some((word) =>
+        atters.userName.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid username, dont include forbiden words!!!',
+      );
+    }
+
+    if (
+      this.forbidenWord.some((word) =>
+        atters.oldPassword.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid password, dont include forbiden words!!!',
+      );
+    }
+    if (
+      this.forbidenWord.some((word) =>
+        atters.newPassword.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid password, dont include forbiden words!!!',
+      );
+    }
 
     if (!user) {
       throw new NotFoundException(

@@ -6,14 +6,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
 //internal Imports
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TaskModule } from './task/task.module';
 import { AuthModule } from './auth/auth.module';
 import { User } from './user/user.entity';
 import { Task } from './task/task.entity';
 import { WinstonLoggerModule } from '../logger.config';
+
+//custom types
 
 @Module({
   imports: [
@@ -41,12 +41,12 @@ import { WinstonLoggerModule } from '../logger.config';
             host: process.env.REDIS_HOST || 'localhost',
             port: Number(process.env.REDIS_PORT) || 6379,
           },
-          ttl: (process.env.TTL as any) || 60 * 5,
+          ttl: (process.env.TTL as number | undefined) || 60 * 5,
         }),
       }),
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

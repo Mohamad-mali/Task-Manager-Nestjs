@@ -13,25 +13,24 @@ import {
 } from '@nestjs/common';
 
 //internal Imports
-import { CreateUser } from './dto/signup.dto';
-import { LoginUser } from './dto/signin.dto';
+import { CreateUser } from './DTO/signup.DTO';
+import { LoginUser } from './DTO/signin.DTO';
 import { UserService } from './user.service';
-import { updateUserDto } from './dto/updatUser.dto';
+import { updateUserDto } from './DTO/updatUser.DTO';
 import { AuthGuard } from '../auth/auth.guard';
 import { Serialize } from '../interceptors/serialize.interceptors';
-import { userDto } from './dto/user.dto';
+import { userDto } from './DTO/user.DTO';
 
 //Custom Types
-import type { Pagination } from '../Types/pagination.type';
+import type { Pagination } from './types/pagination.type';
 
 @Controller('user')
+@UseInterceptors(new Serialize(userDto))
 export class UserController {
-  private readonly logger = new Logger(UserService.name);
   constructor(private userServices: UserService) {}
 
   @Get()
   @UseGuards(AuthGuard)
-  @UseInterceptors(new Serialize(userDto))
   async userList(@Query('page') page?: number, @Query('take') take?: number) {
     const data: Pagination = {
       page,
@@ -41,8 +40,7 @@ export class UserController {
     return await this.userServices.findAll(data);
   }
 
-  @Post('/signup')
-  @UseInterceptors(new Serialize(userDto))
+  @Post('signup')
   async createUser(@Body() body: CreateUser) {
     return await this.userServices.createUser(
       body.email,
@@ -51,19 +49,19 @@ export class UserController {
     );
   }
 
-  @Post('/signin')
+  @Post('signin')
   async loginUser(@Body() body: LoginUser) {
     return await this.userServices.loging(body.email, body.password);
   }
 
   @UseGuards(AuthGuard)
-  @Delete('/:id')
+  @Delete(':id')
   async deleteUser(@Param('id') id: string) {
     return await this.userServices.deleteUser(id);
   }
 
   @UseGuards(AuthGuard)
-  @Patch('/:id')
+  @Patch(':id')
   async updateUser(@Body() body: updateUserDto, @Param('id') id: string) {
     return await this.userServices.updateUser(id, body);
   }

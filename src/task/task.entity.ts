@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { User } from '../user/user.entity';
 
-import { Status } from './dto/TaskStatus';
+import { Status } from './types/TaskStatus';
 
 @Entity()
 export class Task {

@@ -12,13 +12,13 @@ import { Repository } from 'typeorm';
 
 //internal Imports
 import { Task } from './task.entity';
-import { Status } from './dto/TaskStatus';
 import { UserService } from '../user/user.service';
 
 //Custom Types
-import type { Pagination } from '../Types/pagination.type';
-import { CreateTask } from './dto/createTask.dto';
-import { updateTaskDto } from './dto/updateTask.dto';
+import { Status } from './types/TaskStatus';
+import type { Pagination } from './types/pagination.type';
+import { CreateTask } from './DTO/createTask.DTO';
+import { updateTaskDto } from './DTO/updateTask.DTO';
 import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
 
 @Injectable()
@@ -29,6 +29,27 @@ export class TaskService {
     @Inject(CACHE_MANAGER) private chacheMan: Cache,
     private userService: UserService,
   ) {}
+
+  private forbidenWord = [
+    'root',
+    'user',
+    'scripts',
+    'script',
+    'console',
+    'log',
+    'admin',
+    'host',
+    'get',
+    '<>',
+    `'`,
+    `"`,
+    ':',
+    `()`,
+    '(',
+    ')',
+    '<',
+    '>',
+  ];
 
   @Cron('* */10 * * * *')
   async scheduler() {
@@ -49,9 +70,18 @@ export class TaskService {
     return await this.repo.remove(hiddenTasks);
   }
 
-  async findAll(data: Pagination) {
-    const take = data.take || 10;
-    const skip = ((data.page || 1) - 1) * take;
+  async findAll(data?: Pagination) {
+    let take: number;
+    let skip: number;
+
+    if (data) {
+      take = data.take || 10;
+      skip = ((data.page || 1) - 1) * take;
+    } else {
+      take = 10;
+      skip = 0;
+    }
+
     try {
       return await this.repo.find({
         take: take,
@@ -65,9 +95,17 @@ export class TaskService {
     }
   }
 
-  async findHidden(data: Pagination) {
-    const take = data.take || 10;
-    const skip = ((data.page || 1) - 1) * take;
+  async findHidden(data?: Pagination) {
+    let take: number;
+    let skip: number;
+
+    if (data) {
+      take = data.take || 10;
+      skip = ((data.page || 1) - 1) * take;
+    } else {
+      take = 10;
+      skip = 0;
+    }
     try {
       return await this.repo.find({
         take: take,
@@ -94,6 +132,25 @@ export class TaskService {
   async createTask(data: CreateTask) {
     const user = await this.userService.findById(data.userId);
 
+    if (
+      this.forbidenWord.some((word) =>
+        data.title.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid email, dont include forbiden words!!!',
+      );
+    }
+    if (
+      this.forbidenWord.some((word) =>
+        data.description.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid email, dont include forbiden words!!!',
+      );
+    }
+
     if (!user) {
       this.logger.error(
         'there was no user found or the id was wrong(task creation faild)',
@@ -105,9 +162,8 @@ export class TaskService {
 
     const { userId, ...taskinfo } = data;
     const task = { ...taskinfo, user: user };
+    const taskIntence = await this.repo.create(task);
     try {
-      const taskIntence = this.repo.create(task);
-
       return await this.repo.save(taskIntence);
     } catch (error) {
       throw new InternalServerErrorException(
@@ -143,13 +199,33 @@ export class TaskService {
   async updateTask(id: string, atters: updateTaskDto) {
     const task = await this.findById(id);
 
-    const user = await this.findById(atters.assign);
+    // let user = await this.findById(atters.assign);
+    // there is this bug we need user repo to find user
 
-    if (!user) {
-      throw new NotFoundException(
-        `could find user that you are tryign to assign the task to!!!!!`,
+    if (
+      this.forbidenWord.some((word) =>
+        atters.title.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid email, dont include forbiden words!!!',
       );
     }
+    if (
+      this.forbidenWord.some((word) =>
+        atters.description.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid email, dont include forbiden words!!!',
+      );
+    }
+
+    // if (!user) {
+    //   throw new NotFoundException(
+    //     `could find user that you are tryign to assign the task to!!!!!`,
+    //   );
+    // }
 
     if (!task) {
       this.logger.error(

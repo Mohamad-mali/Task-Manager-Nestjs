@@ -9,22 +9,23 @@ import {
   Param,
   Query,
   Logger,
+  UseGuards,
 } from '@nestjs/common';
 import { CacheInterceptor, CacheKey, CacheTTL } from '@nestjs/cache-manager';
 
 //internal Imports
-import { CreateTask } from './dto/createTask.dto';
-import { updateTaskDto } from './dto/updateTask.dto';
 import { TaskService } from './task.service';
+import { AuthGuard } from '../auth/auth.guard';
 
 //Custom Types
-import type { Pagination } from '../Types/pagination.type';
+import type { Pagination } from '../user/types/pagination.type';
+import { CreateTask } from './DTO/createTask.DTO';
+import { updateTaskDto } from './DTO/updateTask.DTO';
 
 @Controller('task')
+@UseGuards(AuthGuard)
 @UseInterceptors(CacheInterceptor)
 export class TaskController {
-  private readonly logger = new Logger(TaskService.name);
-
   constructor(private taskService: TaskService) {}
 
   @Get()
@@ -38,7 +39,7 @@ export class TaskController {
     return await this.taskService.findAll(data);
   }
 
-  @Get('/deleted')
+  @Get('deleted')
   async getHiddentasks(
     @Query('page') page: number,
     @Query('take') take?: number,
@@ -50,22 +51,22 @@ export class TaskController {
     return await this.taskService.findHidden(data);
   }
 
-  @Post('/createTask')
+  @Post('createTask')
   async createTask(@Body() data: CreateTask) {
     return await this.taskService.createTask(data);
   }
 
-  @Get('/:id')
+  @Get(':id')
   async getTaskBy(@Param('id') id: string) {
     return await this.taskService.findById(id);
   }
 
-  @Delete('/:id')
+  @Delete(':id')
   async deleteTask(@Param('id') id: string) {
     return await this.taskService.deleteTask(id);
   }
 
-  @Patch('/:id')
+  @Patch(':id')
   async updateTask(@Body() body: updateTaskDto, @Param('id') id: string) {
     return await this.taskService.updateTask(id, body);
   }

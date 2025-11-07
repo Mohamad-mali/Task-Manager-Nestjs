@@ -1,5 +1,7 @@
 import { WinstonModule } from 'nest-winston';
+import { dirname } from 'path';
 import * as winston from 'winston';
+import 'winston-daily-rotate-file';
 
 export const winstonLogger = WinstonModule.createLogger({
   transports: [
@@ -13,9 +15,12 @@ export const winstonLogger = WinstonModule.createLogger({
         ),
       ),
     }),
-    new winston.transports.File({
-      filename: 'logs/app.log',
-      level: 'info',
+    new (winston.transport as any).DailyRotatefile({
+      dirname: 'logs',
+      filename: 'app-%DATA%.log',
+      dataPattern: 'YYYY-MM-DD',
+      maxSize: '20m',
+      maxFiles: '2',
       format: winston.format.combine(
         winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
         winston.format.printf(
