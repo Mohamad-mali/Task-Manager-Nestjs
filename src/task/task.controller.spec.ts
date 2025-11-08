@@ -1,18 +1,25 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { JwtService } from '@nestjs/jwt';
+import { DeepPartial } from 'typeorm';
+
+//Internal imports
 import { TaskController } from './task.controller';
 import { TaskService } from './task.service';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user.entity';
 import { Task } from './task.entity';
 import { CreateTask } from './DTO/createTask.DTO';
+import { UpdateTaskDto } from './DTO/updateTask.DTO';
 
 describe('TaskController', () => {
   let controller: TaskController;
 
-  let users: User[] = [];
+  let users: DeepPartial<User[]> = [
+    { id: '1', email: 'tst', userName: 'username', password: '111111' },
+  ];
 
-  let FakeTaskServices: Partial<TaskService> = {
+  let FakeTaskServices: DeepPartial<TaskService> = {
     findById: (id: string) => {
       return Promise.resolve({
         id: '1',
@@ -32,8 +39,15 @@ describe('TaskController', () => {
         title: data.title,
         description: data.description,
         status: data.status,
-        userId: data.userId,
-      } as Task);
+        owner: users[0],
+        assign: users[0],
+      } as DeepPartial<Task>);
+    },
+    deleteTask: (id) => {
+      return Promise.resolve(true);
+    },
+    updateTask: (id) => {
+      return Promise.resolve('updated');
     },
   };
 
@@ -54,6 +68,7 @@ describe('TaskController', () => {
         { provide: CACHE_MANAGER, useValue: '' },
         { provide: UserService, useValue: FakeUserService },
         { provide: TaskService, useValue: FakeTaskServices },
+        JwtService,
       ],
     }).compile();
 
@@ -69,12 +84,32 @@ describe('TaskController', () => {
       title: 'tst',
       description: 'this a test',
       status: 1,
-      userId: '4',
     };
-    const task = await controller.createTask(data);
+    const task = await controller.createTask('tst', data);
+
+    expect(task).toBeDefined();
   });
 
   it('should return a list of task', async () => {
     const tasks = await controller.getAllTask(1, 10);
+    expect(tasks).toBeDefined();
+  });
+
+  it('should delete a task', async () => {
+    const res = await controller.deleteTask('1');
+
+    expect(res).toBe(true);
+  });
+
+  it('should update a task', async () => {
+    const data: UpdateTaskDto = {
+      title: 'tst',
+      description: 'tst',
+      assign: '',
+      status: 0,
+    };
+    const res = await controller.updateTask('1', data, '1');
+
+    expect(res).toBe('updated');
   });
 });

@@ -1,4 +1,4 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 
@@ -16,13 +16,26 @@ async function bootstrap() {
     .setTitle('Task Manager API')
     .setDescription('all the api to use Task Manager')
     .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'Bearer',
+        bearerFormat: 'JWT',
+        name: 'Authorization',
+        description: 'Enter JWT token here (without the Bearer prefix)',
+        in: 'header',
+      },
+      'access-token',
+    )
     .build();
 
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
-  app.useGlobalFilters(new AllExceptionsFilter());
+
+  const httpAdapterHost = app.get(HttpAdapterHost);
+  app.useGlobalFilters(new AllExceptionsFilter(httpAdapterHost));
 
   await app.listen(process.env.APP_PORT || 3000);
 }

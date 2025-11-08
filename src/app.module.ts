@@ -4,6 +4,7 @@ import { redisStore } from 'cache-manager-redis-yet';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { DataSourceOptions } from 'typeorm';
 
 //internal Imports
 import { UserModule } from './user/user.module';
@@ -15,6 +16,8 @@ import { WinstonLoggerModule } from '../logger.config';
 
 //custom types
 
+const dbType = (process.env.DB_TYPE ?? 'postgres') as DataSourceOptions['type'];
+
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true }),
@@ -24,7 +27,7 @@ import { WinstonLoggerModule } from '../logger.config';
     TaskModule,
     AuthModule,
     TypeOrmModule.forRoot({
-      type: (process.env.DB_TYPE as any) || 'postgres',
+      type: dbType,
       host: process.env.POSTGRES_HOST || 'localhost',
       port: Number(process.env.POSTGRES_PORT) || 5432,
       username: process.env.POSTGRES_USER || 'root',
@@ -32,7 +35,7 @@ import { WinstonLoggerModule } from '../logger.config';
       database: process.env.POSTGRES_DB || 'TaskManager',
       entities: [User, Task],
       synchronize: true,
-    }),
+    } as DataSourceOptions),
     CacheModule.registerAsync({
       isGlobal: true,
       useFactory: async () => ({

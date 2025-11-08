@@ -1,10 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { JwtService } from '@nestjs/jwt';
+import { DeepPartial } from 'typeorm';
+
+//Internal imports
+import { UpdateUserDto } from './DTO/updatUser.DTO';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { User } from './user.entity';
-import { JwtService } from '@nestjs/jwt';
-import { DeepPartial } from 'typeorm';
-import { updateUserDto } from './DTO/updatUser.DTO';
 
 describe('UserController', () => {
   let controller: UserController;
@@ -83,7 +85,7 @@ describe('UserController', () => {
   });
 
   it('should update a user', async () => {
-    const body: updateUserDto = {
+    const body: UpdateUserDto = {
       email: 'tester@tester.com',
       userName: '',
       oldPassword: '',

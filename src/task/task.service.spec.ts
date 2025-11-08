@@ -1,7 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { DeepPartial, Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { BadRequestException, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 
 import { Task } from './task.entity';
 import { TaskService } from './task.service';
@@ -22,53 +26,48 @@ describe('TaskService', () => {
     {
       title: 'Task 1',
       description: 'this is a test task',
-      hidden: false,
-      assign: 'none',
+      assign: users[1],
       id: '1',
       status: 0,
-      userId: '1',
+      owner: users[0],
     },
     {
       title: 'Task 2',
       description: 'this is a test task',
-      hidden: false,
-      assign: 'none',
+      assign: users[1],
       id: '2',
       status: 0,
-      userId: '1',
+      owner: users[0],
     },
     {
       title: 'Task 3',
       description: 'this is a test task',
-      hidden: false,
-      assign: 'none',
       id: '3',
       status: 0,
-      userId: '2',
+      owner: users[0],
+      assign: users[1],
     },
     {
       title: 'Task 4',
       description: 'this is a test task',
-      hidden: false,
-      assign: 'none',
       id: '4',
       status: 0,
-      userId: '2',
+      owner: users[0],
+      assign: users[1],
     },
     {
       title: 'Task 5',
       description: 'this is a test task',
-      hidden: true,
-      assign: 'none',
       id: '5',
       status: 0,
-      userId: '2',
+      owner: users[0],
+      assign: users[1],
     },
   ];
 
   let FakeTaskRepo: DeepPartial<Repository<Task>> = {
     find: async () => {
-      const taskList = await tasks.filter((task) => task.hidden !== true);
+      const taskList = await tasks.filter((task) => task.assign !== null);
       return Promise.resolve(taskList);
     },
     findOne: async (options: any) => {
@@ -101,6 +100,9 @@ describe('TaskService', () => {
     remove: async (task: Task) => {
       tasks = tasks.filter((obj) => obj.id !== task.id);
       return Promise.resolve();
+    },
+    softDelete: async (tasks: Task) => {
+      return Promise.resolve(true);
     },
   };
 
@@ -159,32 +161,33 @@ describe('TaskService', () => {
     const data = {
       title: 'Task 8',
       description: 'this is a test task',
-      hidden: true,
-      assign: 'none',
       id: '8',
       status: 0,
-      userId: '2',
+      assign: users[1],
     };
-    const task = await service.createTask(data);
+    const task = await service.createTask(data, 'tst');
 
     expect(task).toBeDefined();
   });
 
-  it('should soft delete a task', async () => {
-    const deletedTask = await service.deleteTask('5');
-
-    expect(tasks).toContain(deletedTask);
-    expect(deletedTask.hidden).toBe(true);
+  it('should not soft delete a task', async () => {
+    expect(service.deleteTask('5')).rejects.toThrow(
+      InternalServerErrorException,
+    );
   });
 
-  it('should update the task', async () => {
-    const upTask = await service.updateTask('3', {
-      title: 'tested',
-      assign: '',
-      description: '',
-      status: 0,
-    });
-
-    expect(upTask).toBeDefined();
+  it('should not update the task', async () => {
+    await expect(
+      service.updateTask(
+        '3',
+        {
+          title: 'tested',
+          assign: '',
+          description: '',
+          status: 0,
+        },
+        '1',
+      ),
+    ).rejects.toThrow(BadRequestException);
   });
 });

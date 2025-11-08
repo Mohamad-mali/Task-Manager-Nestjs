@@ -8,7 +8,8 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Cron } from '@nestjs/schedule';
-import { Repository } from 'typeorm';
+import { IsNull, Not, Repository } from 'typeorm';
+import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
 
 //internal Imports
 import { Task } from './task.entity';
@@ -18,8 +19,7 @@ import { UserService } from '../user/user.service';
 import { Status } from './types/TaskStatus';
 import type { Pagination } from './types/pagination.type';
 import { CreateTask } from './DTO/createTask.DTO';
-import { updateTaskDto } from './DTO/updateTask.DTO';
-import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
+import { UpdateTaskDto } from './DTO/updateTask.DTO';
 
 @Injectable()
 export class TaskService {
@@ -54,7 +54,7 @@ export class TaskService {
   @Cron('* */10 * * * *')
   async scheduler() {
     const pending = await this.repo.find({
-      where: { status: Status.PENDDING, hidden: false },
+      where: { status: Status.PENDDING },
     });
 
     for (const task of pending) {
@@ -65,9 +65,11 @@ export class TaskService {
 
   @Cron('* * 12 * * *')
   async cleanTask() {
-    const hiddenTasks = await this.repo.find({ where: { hidden: true } });
+    const softDeletedTask = await this.repo.find({
+      where: { deletedAt: Not(IsNull()) },
+    });
 
-    return await this.repo.remove(hiddenTasks);
+    return await this.repo.remove(softDeletedTask);
   }
 
   async findAll(data?: Pagination) {
@@ -86,7 +88,6 @@ export class TaskService {
       return await this.repo.find({
         take: take,
         skip: skip,
-        where: { hidden: false },
       });
     } catch (error) {
       throw new InternalServerErrorException(
@@ -110,7 +111,7 @@ export class TaskService {
       return await this.repo.find({
         take: take,
         skip: skip,
-        where: { hidden: true },
+        where: { deletedAt: Not(IsNull()) },
       });
     } catch (error) {
       throw new InternalServerErrorException(
@@ -121,7 +122,10 @@ export class TaskService {
 
   async findById(id: string) {
     try {
-      return await this.repo.findOne({ where: { id: id } });
+      return await this.repo.findOne({
+        where: { id: id },
+        relations: ['owner', 'assign'],
+      });
     } catch (error) {
       throw new InternalServerErrorException(
         `internal Error, faild to find the task by id!!`,
@@ -129,8 +133,21 @@ export class TaskService {
     }
   }
 
-  async createTask(data: CreateTask) {
-    const user = await this.userService.findById(data.userId);
+  async createTask(data: CreateTask, user) {
+    if (!data) {
+      throw new BadRequestException('no Data was given!');
+    }
+
+    const fetchedUser = await this.userService.findById(user.Id);
+
+    if (!fetchedUser) {
+      this.logger.error(
+        'there was no user found or the id was wrong(task creation faild)',
+      );
+      throw new BadRequestException(
+        'there was no user found or the id was wrong(task creation faild)',
+      );
+    }
 
     if (
       this.forbidenWord.some((word) =>
@@ -151,17 +168,7 @@ export class TaskService {
       );
     }
 
-    if (!user) {
-      this.logger.error(
-        'there was no user found or the id was wrong(task creation faild)',
-      );
-      throw new BadRequestException(
-        'there was no user found or the id was wrong(task creation faild)',
-      );
-    }
-
-    const { userId, ...taskinfo } = data;
-    const task = { ...taskinfo, user: user };
+    const task = { ...data, user: fetchedUser, assign: fetchedUser };
     const taskIntence = await this.repo.create(task);
     try {
       return await this.repo.save(taskIntence);
@@ -184,11 +191,9 @@ export class TaskService {
       );
     }
     try {
-      task.hidden = true;
-
       await this.chacheMan.del('all-tasks');
 
-      return await this.repo.save(task);
+      return await this.repo.softDelete(task);
     } catch (error) {
       throw new InternalServerErrorException(
         'something or somethings may have been went wrong. thus we were unable to delete the task',
@@ -196,11 +201,37 @@ export class TaskService {
     }
   }
 
-  async updateTask(id: string, atters: updateTaskDto) {
+  async updateTask(id: string, atters: UpdateTaskDto, userId: string) {
+    if (!atters) {
+      throw new BadRequestException('no Data was given!');
+    }
+
+    const ownerUser = await this.userService.findById(userId);
+
     const task = await this.findById(id);
 
-    // let user = await this.findById(atters.assign);
-    // there is this bug we need user repo to find user
+    let assignUser = await this.userService.findById(atters.assign);
+
+    if (!ownerUser) {
+      throw new BadRequestException(`couldn't find the Owner User!!!`);
+    }
+
+    if (!task) {
+      this.logger.error(
+        'the task was not found, or the task id was wrong (taask update faild)',
+      );
+      throw new BadRequestException();
+    }
+
+    if (!assignUser) {
+      throw new NotFoundException(
+        `could find assignUser that you are tryign to assign the task to!!!!!`,
+      );
+    }
+
+    if (ownerUser === task?.owner) {
+      throw new BadRequestException(`the user isnt the owner of the task!!!!`);
+    }
 
     if (
       this.forbidenWord.some((word) =>
@@ -221,24 +252,22 @@ export class TaskService {
       );
     }
 
-    // if (!user) {
-    //   throw new NotFoundException(
-    //     `could find user that you are tryign to assign the task to!!!!!`,
-    //   );
-    // }
-
-    if (!task) {
-      this.logger.error(
-        'the task was not found, or the task id was wrong (taask update faild)',
+    if (
+      this.forbidenWord.some((word) =>
+        atters.assign.toLowerCase().includes(word.toLowerCase()),
+      )
+    ) {
+      throw new BadRequestException(
+        'enter a valid assigning id, dont include forbiden words!!!',
       );
-      throw new BadRequestException();
     }
+
     try {
       const updatedTask: Partial<Task> = {
         title: atters.title,
         description: atters.description,
         status: atters.status,
-        assign: atters.assign,
+        assign: assignUser,
       };
 
       this.logger.warn('task was updated!!! the data is ereasable');

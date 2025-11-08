@@ -4,6 +4,7 @@ import {
   Entity,
   ManyToOne,
   JoinColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 import { User } from '../user/user.entity';
 
@@ -20,21 +21,19 @@ export class Task {
   @Column()
   description: string;
 
-  @Column()
+  @Column({ type: 'enum', enum: Status, default: Status.TO_DO })
   status: Status;
 
-  @Column({ default: 'none' })
-  assign: string;
-
-  @Column({ default: false })
-  hidden: boolean;
-
-  @ManyToOne(() => User, (user) => user.tasks, {
+  @ManyToOne(() => User, (user) => user.ownedTasks, {
     onDelete: 'CASCADE',
   })
-  @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
-  user: User;
+  @JoinColumn({ name: 'ownerId' })
+  owner: User;
 
-  @Column()
-  userId: string;
+  @ManyToOne(() => User, (user) => user.assignedTasks, { onDelete: 'SET NULL' })
+  @JoinColumn({ name: 'assignId' })
+  assign: User;
+
+  @DeleteDateColumn({ nullable: true })
+  deletedAt?: Date;
 }

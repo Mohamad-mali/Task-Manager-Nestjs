@@ -14,7 +14,7 @@ import { User } from './user.entity';
 
 //Custom Types
 import type { Pagination } from './types/pagination.type';
-import { updateUserDto } from './DTO/updatUser.DTO';
+import { UpdateUserDto } from './DTO/updatUser.DTO';
 
 @Injectable()
 export class UserService {
@@ -85,6 +85,18 @@ export class UserService {
   }
 
   async createUser(email: string, password: string, userName: string) {
+    if (!email) {
+      throw new BadRequestException('no E-mail was given!');
+    }
+
+    if (!password) {
+      throw new BadRequestException('no Password was given!');
+    }
+
+    if (!userName) {
+      throw new BadRequestException('no User Name was given!');
+    }
+
     const isUser = await this.repo.findOne({ where: { email: email } });
 
     if (
@@ -141,6 +153,13 @@ export class UserService {
   }
 
   async loging(email: string, password: string) {
+    if (!email) {
+      throw new BadRequestException('no E-mail was given!');
+    }
+    if (!password) {
+      throw new BadRequestException('no Password was given!');
+    }
+
     const user = await this.repo.findOne({ where: { email } });
 
     if (
@@ -201,7 +220,11 @@ export class UserService {
     }
   }
 
-  async updateUser(id: string, atters: updateUserDto) {
+  async updateUser(id: string, atters: UpdateUserDto) {
+    if (!atters) {
+      throw new BadRequestException('no Data was given!');
+    }
+
     let hashPass: string | undefined = undefined;
     const user = await this.findById(id);
 

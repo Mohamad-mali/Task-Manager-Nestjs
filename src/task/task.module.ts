@@ -1,5 +1,6 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtService } from '@nestjs/jwt';
 
 //internal Imports
 import { TaskController } from './task.controller';
@@ -10,7 +11,7 @@ import { UserModule } from '../user/user.module';
 @Module({
   imports: [TypeOrmModule.forFeature([Task]), forwardRef(() => UserModule)],
   controllers: [TaskController],
-  providers: [TaskService],
+  providers: [TaskService, JwtService],
   exports: [TaskService, TypeOrmModule],
 })
 export class TaskModule {}
