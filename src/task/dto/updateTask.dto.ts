@@ -1,4 +1,4 @@
-import { IsOptional, IsUUID, Matches } from 'class-validator';
+import { IsOptional, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 import { Status } from '../types/TaskStatus';
@@ -6,7 +6,6 @@ import { Status } from '../types/TaskStatus';
 export class UpdateTaskDto {
   @ApiProperty({ description: 'title', example: 'build a snow man!' })
   @IsOptional()
-  @Matches(/^[A-Za-z0-9]+$/)
   title: string;
 
   @ApiProperty({
@@ -14,7 +13,6 @@ export class UpdateTaskDto {
     example: 'build a snow man! after snow strom, with carrot for nose',
   })
   @IsOptional()
-  @Matches(/^[A-Za-z0-9]+$/)
   description: string;
 
   @ApiProperty({

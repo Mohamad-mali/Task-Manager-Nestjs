@@ -1,10 +1,4 @@
-import {
-  IsNumber,
-  IsOptional,
-  IsString,
-  Length,
-  Matches,
-} from 'class-validator';
+import { IsNumber, IsOptional, IsString, Length } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 import { Status } from '../types/TaskStatus';
@@ -12,7 +6,6 @@ import { Status } from '../types/TaskStatus';
 export class CreateTask {
   @ApiProperty({ description: 'title', example: 'build a snow man!' })
   @IsString()
-  @Matches(/^[A-Za-z0-9]+$/)
   @Length(3, 30)
   title: string;
 

@@ -28,7 +28,10 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Task, (task) => task.owner)
+  @OneToMany(() => Task, (task) => task.owner, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   ownedTasks: Task[];
 
   @OneToMany(() => Task, (task) => task.assign)

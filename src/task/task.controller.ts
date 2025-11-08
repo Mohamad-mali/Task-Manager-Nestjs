@@ -169,6 +169,6 @@ export class TaskController {
     @Body() body: UpdateTaskDto,
     @Param('id') id: string,
   ) {
-    return await this.taskService.updateTask(id, body, req.user);
+    return await this.taskService.updateTask(id, body, req.user.sub);
   }
 }

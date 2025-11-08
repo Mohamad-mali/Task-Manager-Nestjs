@@ -138,9 +138,9 @@ export class TaskService {
       throw new BadRequestException('no Data was given!');
     }
 
-    const fetchedUser = await this.userService.findById(user.Id);
+    const owner = await this.userService.findById(user.sub);
 
-    if (!fetchedUser) {
+    if (!owner) {
       this.logger.error(
         'there was no user found or the id was wrong(task creation faild)',
       );
@@ -150,6 +150,7 @@ export class TaskService {
     }
 
     if (
+      data.title &&
       this.forbidenWord.some((word) =>
         data.title.toLowerCase().includes(word.toLowerCase()),
       )
@@ -159,6 +160,7 @@ export class TaskService {
       );
     }
     if (
+      data.description &&
       this.forbidenWord.some((word) =>
         data.description.toLowerCase().includes(word.toLowerCase()),
       )
@@ -168,9 +170,10 @@ export class TaskService {
       );
     }
 
-    const task = { ...data, user: fetchedUser, assign: fetchedUser };
+    const task = { ...data, owner: owner, assign: owner };
     const taskIntence = await this.repo.create(task);
     try {
+      await this.chacheMan.del('all-tasks');
       return await this.repo.save(taskIntence);
     } catch (error) {
       throw new InternalServerErrorException(
@@ -210,8 +213,6 @@ export class TaskService {
 
     const task = await this.findById(id);
 
-    let assignUser = await this.userService.findById(atters.assign);
-
     if (!ownerUser) {
       throw new BadRequestException(`couldn't find the Owner User!!!`);
     }
@@ -223,17 +224,12 @@ export class TaskService {
       throw new BadRequestException();
     }
 
-    if (!assignUser) {
-      throw new NotFoundException(
-        `could find assignUser that you are tryign to assign the task to!!!!!`,
-      );
-    }
-
     if (ownerUser === task?.owner) {
       throw new BadRequestException(`the user isnt the owner of the task!!!!`);
     }
 
     if (
+      atters.title &&
       this.forbidenWord.some((word) =>
         atters.title.toLowerCase().includes(word.toLowerCase()),
       )
@@ -243,6 +239,7 @@ export class TaskService {
       );
     }
     if (
+      atters.description &&
       this.forbidenWord.some((word) =>
         atters.description.toLowerCase().includes(word.toLowerCase()),
       )
@@ -253,6 +250,7 @@ export class TaskService {
     }
 
     if (
+      atters.assign &&
       this.forbidenWord.some((word) =>
         atters.assign.toLowerCase().includes(word.toLowerCase()),
       )
@@ -260,6 +258,17 @@ export class TaskService {
       throw new BadRequestException(
         'enter a valid assigning id, dont include forbiden words!!!',
       );
+    }
+
+    let assignUser;
+
+    if (atters.assign) {
+      assignUser = await this.userService.findById(atters.assign);
+      if (!assignUser) {
+        throw new NotFoundException(
+          `could find assignUser that you are tryign to assign the task to!!!!!`,
+        );
+      }
     }
 
     try {

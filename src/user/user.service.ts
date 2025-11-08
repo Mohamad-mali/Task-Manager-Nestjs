@@ -195,7 +195,10 @@ export class UserService {
     try {
       const payload = { sub: user.id, userName: user.userName };
 
-      return { access_token: await this.jwtservice.signAsync(payload) };
+      return {
+        access_token: await this.jwtservice.signAsync(payload),
+        userId: user.id,
+      };
     } catch (error) {
       throw new InternalServerErrorException(
         'something went wrong, thus we cannot sign you in!!!',
@@ -204,7 +207,10 @@ export class UserService {
   }
 
   async deleteUser(id: string) {
-    const user = await this.findById(id);
+    const user = await this.repo.findOne({
+      where: { id },
+      relations: ['ownedTasks'],
+    });
 
     if (!user) {
       throw new NotFoundException(
@@ -212,7 +218,7 @@ export class UserService {
       );
     }
     try {
-      return await this.repo.remove(user);
+      return await this.repo.delete(user.id);
     } catch (error) {
       throw new InternalServerErrorException(
         'something went wrong, could delete the user',
@@ -226,9 +232,19 @@ export class UserService {
     }
 
     let hashPass: string | undefined = undefined;
-    const user = await this.findById(id);
+    const user = await this.repo.findOne({ where: { id } });
+
+    if (atters.email) {
+      const isUsed = await this.repo.findOne({
+        where: { email: atters.email },
+      });
+      if (isUsed) {
+        throw new BadRequestException('this email is already in use!!!');
+      }
+    }
 
     if (
+      atters.email &&
       this.forbidenWord.some((word) =>
         atters.email.toLowerCase().includes(word.toLowerCase()),
       )
@@ -239,6 +255,7 @@ export class UserService {
     }
 
     if (
+      atters.userName &&
       this.forbidenWord.some((word) =>
         atters.userName.toLowerCase().includes(word.toLowerCase()),
       )
@@ -249,6 +266,7 @@ export class UserService {
     }
 
     if (
+      atters.oldPassword &&
       this.forbidenWord.some((word) =>
         atters.oldPassword.toLowerCase().includes(word.toLowerCase()),
       )
@@ -258,6 +276,7 @@ export class UserService {
       );
     }
     if (
+      atters.newPassword &&
       this.forbidenWord.some((word) =>
         atters.newPassword.toLowerCase().includes(word.toLowerCase()),
       )
@@ -298,6 +317,7 @@ export class UserService {
         password: hashPass,
       };
       Object.assign(user, newUser);
+
       return await this.repo.save(user);
     } catch (error) {
       throw new InternalServerErrorException(
