@@ -16,19 +16,19 @@ You find some guides for the configuration in the env file too!!
 
 1. go to the env file and change the POSGRESS username, password to yours
 2. inside of the sql you must create a db named "taskmanagernest"
-3. expose postgress on port [http://localhost:5432]
+3. expose postgress on port [http://localhost:5432](http://localhost:5432)
 
 ### REDIS
 
-instal the redis and expose it on defaul port [http://localhost:6379]
+instal the redis and expose it on defaul port [http://localhost:6379](http://localhost:6379)
 
 ### app
 
-after running the commands for local you can run the porject and it is accessable on [http://localhost:3000/]
+after running the commands for local you can run the porject and it is accessable on [http://localhost:3000/](http://localhost:3000/)
 
 ### swagger
 
-Access the api doc via [http://localhost:3000/api]
+Access the api doc via [http://localhost:3000/api](http://localhost:3000/api)
 
 ## Running porject on docker
 
