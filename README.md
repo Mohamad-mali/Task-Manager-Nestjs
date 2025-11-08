@@ -52,6 +52,8 @@ POSTGRES_USER="root" #your user in db
 POSTGRES_PASSWORD="123456789" #your Password in db
 POSTGRES_PORT=5432
 
+TTL= 60 * 5
+
 ```
 
 ## Project setup
